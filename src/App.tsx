@@ -197,6 +197,19 @@ function App() {
     return key ? t[key] : className
   }
 
+  const getMaterialMessage = (className: string): string => {
+    const messageKeys: Record<string, keyof typeof t> = {
+      'cardboard': 'cardboardMessage',
+      'glass': 'glassMessage',
+      'metal': 'metalMessage',
+      'paper': 'paperMessage',
+      'plastic': 'plasticMessage',
+      'trash': 'trashMessage'
+    }
+    const key = messageKeys[className]
+    return key ? t[key] : ''
+  }
+
   const getRecyclingAdvice = (className: string, isRecyclable: boolean): string => {
     const adviceKeys: Record<string, keyof typeof t> = {
       'cardboard': 'cardboardAdvice',
@@ -364,7 +377,7 @@ function App() {
 
                 <div className="info-message">
                   <h3>{t.materialInfo}</h3>
-                  <p>{prediction.mensaje}</p>
+                  <p>{getMaterialMessage(prediction.clase)}</p>
                 </div>
 
                 <div className="advice-section">

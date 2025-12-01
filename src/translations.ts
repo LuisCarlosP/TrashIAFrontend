@@ -20,7 +20,7 @@ export const translations = {
     // Analyze Section
     imageLoaded: 'Imagen cargada. Haz clic en el botón para analizarla.',
     analyzeWaste: 'Analizar Residuo',
-    analyzing: 'Analizando imagen...',
+    analyzing: 'Analizando imagen... La primera imagen puede tardar hasta 1 minuto.',
     
     // Results
     confidence: 'Confianza',
@@ -37,6 +37,14 @@ export const translations = {
     paper: 'Papel',
     plastic: 'Plástico',
     trash: 'Basura General',
+    
+    // Material Messages
+    cardboardMessage: 'El cartón es reciclable siempre que esté limpio y seco.',
+    glassMessage: 'El vidrio es 100% reciclable y puede reciclarse infinitas veces.',
+    metalMessage: 'El metal es reciclable y muy valioso para el reciclaje.',
+    paperMessage: 'El papel es reciclable siempre que no esté muy sucio.',
+    plasticMessage: 'El plástico es reciclable, pero asegúrate de limpiarlo primero.',
+    trashMessage: 'Este material no es reciclable y debe desecharse como basura general.',
     
     // Recycling Advice
     cardboardAdvice: 'Aplana las cajas de cartón para ahorrar espacio. Retira cintas adhesivas y grapas. Deposita en el contenedor azul.',
@@ -81,7 +89,7 @@ export const translations = {
     // Analyze Section
     imageLoaded: 'Image loaded. Click the button to analyze it.',
     analyzeWaste: 'Analyze Waste',
-    analyzing: 'Analyzing image...',
+    analyzing: 'Analyzing image... The first image may take up to 1 minute.',
     
     // Results
     confidence: 'Confidence',
@@ -98,6 +106,14 @@ export const translations = {
     paper: 'Paper',
     plastic: 'Plastic',
     trash: 'General Waste',
+    
+    // Material Messages
+    cardboardMessage: 'Cardboard is recyclable as long as it is clean and dry.',
+    glassMessage: 'Glass is 100% recyclable and can be recycled infinitely.',
+    metalMessage: 'Metal is recyclable and very valuable for recycling.',
+    paperMessage: 'Paper is recyclable as long as it is not too dirty.',
+    plasticMessage: 'Plastic is recyclable, but make sure to clean it first.',
+    trashMessage: 'This material is not recyclable and should be disposed of as general waste.',
     
     // Recycling Advice
     cardboardAdvice: 'Flatten cardboard boxes to save space. Remove adhesive tapes and staples. Place in the blue recycling bin.',
