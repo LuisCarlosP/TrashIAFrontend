@@ -13,8 +13,13 @@ import {
   faRotateRight,
   faCircleExclamation,
   faVideo,
-  faStop
+  faStop,
+  faLanguage
 } from '@fortawesome/free-solid-svg-icons'
+import { translations, type Language } from './translations'
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 
 function App() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -24,14 +29,22 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [showCamera, setShowCamera] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
+  const [language, setLanguage] = useState<Language>('es')
   
   const fileInputRef = useRef<HTMLInputElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
 
+  const t = translations[language]
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'es' ? 'en' : 'es')
+  }
+
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      if (!validateFile(file)) return;
       displayImagePreview(file)
     }
   }
@@ -52,10 +65,27 @@ function App() {
     
     const file = e.dataTransfer.files?.[0]
     if (file && file.type.startsWith('image/')) {
+      if (!validateFile(file)) return;
       displayImagePreview(file)
     } else {
-      setError('Por favor, suelta una imagen válida')
+      setError(t.invalidFileFormat)
     }
+  }
+
+  const validateFile = (file: File): boolean => {
+    // Validar tipo de archivo
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      setError(t.formatNotAllowed);
+      return false;
+    }
+    
+    // Validar tamaño
+    if (file.size > MAX_FILE_SIZE) {
+      setError(`${t.fileTooLarge} ${MAX_FILE_SIZE / (1024 * 1024)}MB`);
+      return false;
+    }
+    
+    return true;
   }
 
   const displayImagePreview = (file: File) => {
@@ -83,7 +113,7 @@ function App() {
       const result = await predictImage(imageFile)
       setPrediction(result)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error desconocido')
+      setError(err instanceof Error ? err.message : t.unknownError)
     } finally {
       setLoading(false)
     }
@@ -111,7 +141,7 @@ function App() {
       }, 100)
     } catch (err) {
       console.error('Error accessing camera:', err)
-      setError('No se pudo acceder a la cámara. Verifica los permisos.')
+      setError(t.cameraAccessError)
       setShowCamera(false)
     }
   }
@@ -142,7 +172,7 @@ function App() {
         }, 'image/jpeg', 0.95)
       }
     } else {
-      setError('La cámara aún no está lista. Espera un momento e intenta nuevamente.')
+      setError(t.cameraNotReady)
     }
   }
 
@@ -154,33 +184,35 @@ function App() {
     stopCamera()
   }
 
-  const getClassNameInSpanish = (className: string): string => {
-    const translations: Record<string, string> = {
-      'cardboard': 'Cartón',
-      'glass': 'Vidrio',
-      'metal': 'Metal',
-      'paper': 'Papel',
-      'plastic': 'Plástico',
-      'trash': 'Basura General'
+  const getClassName = (className: string): string => {
+    const classTranslations: Record<string, keyof typeof t> = {
+      'cardboard': 'cardboard',
+      'glass': 'glass',
+      'metal': 'metal',
+      'paper': 'paper',
+      'plastic': 'plastic',
+      'trash': 'trash'
     }
-    return translations[className] || className
+    const key = classTranslations[className]
+    return key ? t[key] : className
   }
 
   const getRecyclingAdvice = (className: string, isRecyclable: boolean): string => {
-    const advice: Record<string, string> = {
-      'cardboard': 'Aplana las cajas de cartón para ahorrar espacio. Retira cintas adhesivas y grapas. Deposita en el contenedor azul.',
-      'glass': 'Enjuaga el vidrio antes de reciclarlo. Retira tapas y corchos. Los espejos y cristales de ventanas NO van en el contenedor de vidrio.',
-      'metal': 'Aplasta las latas para reducir volumen. Enjuaga los envases metálicos. Deposita en el contenedor amarillo junto con plásticos.',
-      'paper': 'Asegúrate de que el papel esté limpio y seco. El papel sucio o mojado contamina el reciclaje. Deposita en el contenedor azul.',
-      'plastic': 'Enjuaga los envases plásticos. Separa las tapas del envase. Reduce el volumen aplastando las botellas. Deposita en el contenedor amarillo.',
-      'trash': 'Este material no es reciclable y debe ir al contenedor de basura general. Considera reducir el consumo de materiales no reciclables.'
+    const adviceKeys: Record<string, keyof typeof t> = {
+      'cardboard': 'cardboardAdvice',
+      'glass': 'glassAdvice',
+      'metal': 'metalAdvice',
+      'paper': 'paperAdvice',
+      'plastic': 'plasticAdvice',
+      'trash': 'trashAdvice'
     }
     
     if (!isRecyclable) {
-      return 'Este material no es reciclable. Deposítalo en el contenedor de basura general. Intenta reducir el uso de productos similares.'
+      return t.notRecyclableAdvice
     }
     
-    return advice[className] || 'Consulta las normas de reciclaje de tu localidad para más información.'
+    const key = adviceKeys[className]
+    return key ? t[key] : t.defaultAdvice
   }
 
   return (
@@ -189,10 +221,14 @@ function App() {
         <div className="header-content">
           <h1 className="title">
             <FontAwesomeIcon icon={faRecycle} className="header-icon" />
-            TrashIA
+            {t.appTitle}
           </h1>
-          <p className="subtitle">Clasificador Inteligente de Residuos</p>
+          <p className="subtitle">{t.appSubtitle}</p>
         </div>
+        <button className="language-toggle" onClick={toggleLanguage}>
+          <FontAwesomeIcon icon={faLanguage} />
+          <span>{language === 'es' ? 'EN' : 'ES'}</span>
+        </button>
       </header>
 
       <main className="main-content">
@@ -205,8 +241,9 @@ function App() {
               onDrop={handleDrop}
             >
               <FontAwesomeIcon icon={faCloudArrowUp} className="dropzone-icon" />
-              <h2>Arrastra tu imagen aquí</h2>
-              <p>o haz clic para seleccionar</p>
+              <h2>{t.dragImageHere}</h2>
+              <p>{t.orClickToSelect}</p>
+              <p className="file-requirements">{t.fileRequirements}</p>
               
               <div className="button-group">
                 <button 
@@ -214,7 +251,7 @@ function App() {
                   onClick={() => fileInputRef.current?.click()}
                 >
                   <FontAwesomeIcon icon={faImage} />
-                  Seleccionar Imagen
+                  {t.selectImage}
                 </button>
                 
                 <button 
@@ -222,14 +259,14 @@ function App() {
                   onClick={startCamera}
                 >
                   <FontAwesomeIcon icon={faCamera} />
-                  Tomar Foto
+                  {t.takePhoto}
                 </button>
               </div>
 
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/jpg,image/png"
                 onChange={handleImageSelect}
                 style={{ display: 'none' }}
               />
@@ -242,7 +279,7 @@ function App() {
             <div className="camera-container">
               <div className="camera-header">
                 <FontAwesomeIcon icon={faVideo} />
-                <span>Cámara Activa - Posiciona el objeto</span>
+                <span>{t.cameraActive}</span>
               </div>
               <video 
                 ref={videoRef}
@@ -252,16 +289,16 @@ function App() {
                 className="camera-video"
               />
               <div className="camera-info">
-                <p>Asegúrate de que el objeto esté bien iluminado y enfocado</p>
+                <p>{t.cameraInfo}</p>
               </div>
               <div className="camera-controls">
                 <button className="btn btn-capture" onClick={capturePhoto}>
                   <FontAwesomeIcon icon={faCamera} />
-                  Capturar Foto
+                  {t.capturePhoto}
                 </button>
                 <button className="btn btn-cancel" onClick={stopCamera}>
                   <FontAwesomeIcon icon={faStop} />
-                  Cancelar
+                  {t.cancel}
                 </button>
               </div>
             </div>
@@ -276,10 +313,10 @@ function App() {
 
             {!loading && !prediction && (
               <div className="analyze-section">
-                <p className="analyze-instruction">Imagen cargada. Haz clic en el botón para analizarla.</p>
+                <p className="analyze-instruction">{t.imageLoaded}</p>
                 <button className="btn btn-analyze" onClick={analyzeImage}>
                   <FontAwesomeIcon icon={faRecycle} />
-                  Analizar Residuo
+                  {t.analyzeWaste}
                 </button>
               </div>
             )}
@@ -287,7 +324,7 @@ function App() {
             {loading && (
               <div className="loading">
                 <FontAwesomeIcon icon={faSpinner} className="spinner" spin />
-                <p>Analizando imagen...</p>
+                <p>{t.analyzing}</p>
               </div>
             )}
 
@@ -305,11 +342,11 @@ function App() {
                     icon={prediction.es_reciclable ? faRecycle : faCircleXmark} 
                     className="prediction-icon"
                   />
-                  <h2>{getClassNameInSpanish(prediction.clase)}</h2>
+                  <h2>{getClassName(prediction.clase)}</h2>
                 </div>
                 
                 <div className="confidence">
-                  <span>Confianza: </span>
+                  <span>{t.confidence}: </span>
                   <strong>{(prediction.confianza * 100).toFixed(1)}%</strong>
                 </div>
 
@@ -322,18 +359,18 @@ function App() {
 
                 <div className={`recyclable-badge ${prediction.es_reciclable ? 'yes' : 'no'}`}>
                   <FontAwesomeIcon icon={prediction.es_reciclable ? faCircleCheck : faCircleXmark} />
-                  {prediction.es_reciclable ? 'Reciclable' : 'No Reciclable'}
+                  {prediction.es_reciclable ? t.recyclable : t.notRecyclable}
                 </div>
 
                 <div className="info-message">
-                  <h3>Información del material</h3>
+                  <h3>{t.materialInfo}</h3>
                   <p>{prediction.mensaje}</p>
                 </div>
 
                 <div className="advice-section">
                   <h3>
                     <FontAwesomeIcon icon={faRecycle} />
-                    Consejos de Reciclaje
+                    {t.recyclingTips}
                   </h3>
                   <p>{getRecyclingAdvice(prediction.clase, prediction.es_reciclable)}</p>
                 </div>
@@ -342,14 +379,15 @@ function App() {
 
             <button className="btn btn-reset" onClick={reset}>
               <FontAwesomeIcon icon={faRotateRight} />
-              Analizar Otro Residuo
+              {t.analyzeAnother}
             </button>
           </div>
         )}
       </main>
 
       <footer className="footer">
-        <p>TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial</p>
+        <p>{t.footerText}</p>
+        <p>&copy; {new Date().getFullYear()} Luis Carlos Picado Rojas. {t.footerCopyright}</p>
       </footer>
     </div>
   )
