@@ -57,7 +57,6 @@ export const translations = {
     unknownError: 'Error desconocido',
     
     // Footer
-    footerText: 'TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial',
     footerCopyright: 'Todos los derechos reservados.'
   },
   

@@ -386,7 +386,6 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>{t.footerText}</p>
         <p>&copy; {new Date().getFullYear()} Luis Carlos Picado Rojas. {t.footerCopyright}</p>
       </footer>
     </div>
