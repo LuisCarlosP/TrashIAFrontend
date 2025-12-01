@@ -64,6 +64,17 @@ export const translations = {
     cameraNotReady: 'La cámara aún no está lista. Espera un momento e intenta nuevamente.',
     unknownError: 'Error desconocido',
     
+    // Chat
+    chatTitle: 'Chat sobre Reciclaje',
+    chatPlaceholder: 'Pregunta sobre este material...',
+    chatSend: 'Enviar',
+    chatLoading: 'Pensando...',
+    chatError: 'Error al enviar mensaje',
+    chatNoSession: 'Primero analiza una imagen para iniciar el chat',
+    chatWelcome: '¡Hola! Pregúntame sobre el material que identificaste.',
+    askQuestion: 'Hacer una pregunta',
+    closeChat: 'Cerrar chat',
+    
     // Footer
     footerCopyright: 'Todos los derechos reservados.'
   },
@@ -132,6 +143,17 @@ export const translations = {
     cameraAccessError: 'Could not access camera. Check permissions.',
     cameraNotReady: 'Camera is not ready yet. Wait a moment and try again.',
     unknownError: 'Unknown error',
+    
+    // Chat
+    chatTitle: 'Recycling Chat',
+    chatPlaceholder: 'Ask about this material...',
+    chatSend: 'Send',
+    chatLoading: 'Thinking...',
+    chatError: 'Error sending message',
+    chatNoSession: 'First analyze an image to start the chat',
+    chatWelcome: 'Hello! Ask me about the material you identified.',
+    askQuestion: 'Ask a question',
+    closeChat: 'Close chat',
     
     // Footer
     footerText: 'TrashIA - Helping to classify waste with Artificial Intelligence',

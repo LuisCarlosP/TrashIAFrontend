@@ -1,22 +1,25 @@
 import { useState, useRef, type DragEvent } from 'react'
 import './App.css'
-import { predictImage, type PredictionResponse } from './services/api'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faRecycle, 
-  faCamera, 
-  faCloudArrowUp, 
-  faImage,
-  faCircleCheck,
-  faCircleXmark,
-  faSpinner,
-  faRotateRight,
-  faCircleExclamation,
-  faVideo,
-  faStop,
-  faLanguage
-} from '@fortawesome/free-solid-svg-icons'
+  predictImage, 
+  type PredictionResponse,
+  createChatSession,
+  sendChatMessage,
+  type ChatSession
+} from './services/api'
 import { translations, type Language } from './translations'
+import {
+  Header,
+  UploadSection,
+  CameraSection,
+  PredictionCard,
+  ChatSection,
+  Footer,
+  Loading,
+  ErrorMessage
+} from './components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRecycle, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -31,9 +34,17 @@ function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [language, setLanguage] = useState<Language>('es')
   
+  // Chat states
+  const [chatSession, setChatSession] = useState<ChatSession | null>(null)
+  const [chatMessages, setChatMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string }>>([])
+  const [chatInput, setChatInput] = useState('')
+  const [chatLoading, setChatLoading] = useState(false)
+  const [showChat, setShowChat] = useState(false)
+  
   const fileInputRef = useRef<HTMLInputElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
+  const chatEndRef = useRef<HTMLDivElement>(null)
 
   const t = translations[language]
 
@@ -112,10 +123,72 @@ function App() {
     try {
       const result = await predictImage(imageFile)
       setPrediction(result)
+      
+      // Crear sesión de chat automáticamente
+      await initializeChatSession(result)
     } catch (err) {
       setError(err instanceof Error ? err.message : t.unknownError)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const initializeChatSession = async (predictionData: PredictionResponse) => {
+    try {
+      const session = await createChatSession({
+        material_type: predictionData.clase,
+        is_recyclable: predictionData.es_reciclable,
+        material_info: predictionData.mensaje,
+        language: language
+      })
+      
+      setChatSession(session)
+      setChatMessages([{
+        role: 'assistant',
+        content: session.message
+      }])
+    } catch (err) {
+      console.error('Error al crear sesión de chat:', err)
+    }
+  }
+
+  const handleSendMessage = async () => {
+    if (!chatInput.trim() || !chatSession || chatLoading) return
+
+    const userMessage = chatInput.trim()
+    setChatInput('')
+    setChatLoading(true)
+
+    // Agregar mensaje del usuario
+    setChatMessages(prev => [...prev, { role: 'user', content: userMessage }])
+
+    try {
+      const response = await sendChatMessage({
+        session_id: chatSession.session_id,
+        message: userMessage
+      })
+
+      // Agregar respuesta del asistente
+      setChatMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: response.response 
+      }])
+
+      // Scroll al final
+      setTimeout(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t.chatError)
+    } finally {
+      setChatLoading(false)
+    }
+  }
+
+  const handleChatKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSendMessage()
     }
   }
 
@@ -181,6 +254,9 @@ function App() {
     setImageFile(null)
     setPrediction(null)
     setError(null)
+    setChatSession(null)
+    setChatMessages([])
+    setShowChat(false)
     stopCamera()
   }
 
@@ -230,92 +306,45 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-content">
-          <h1 className="title">
-            <FontAwesomeIcon icon={faRecycle} className="header-icon" />
-            {t.appTitle}
-          </h1>
-          <p className="subtitle">{t.appSubtitle}</p>
-        </div>
-        <button className="language-toggle" onClick={toggleLanguage}>
-          <FontAwesomeIcon icon={faLanguage} />
-          <span>{language === 'es' ? 'EN' : 'ES'}</span>
-        </button>
-      </header>
+      <Header
+        title={t.appTitle}
+        subtitle={t.appSubtitle}
+        language={language}
+        onToggleLanguage={toggleLanguage}
+      />
 
       <main className="main-content">
         {!selectedImage && !showCamera && (
-          <div className="upload-section">
-            <div 
-              className={`dropzone ${isDragging ? 'dragging' : ''}`}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
-              <FontAwesomeIcon icon={faCloudArrowUp} className="dropzone-icon" />
-              <h2>{t.dragImageHere}</h2>
-              <p>{t.orClickToSelect}</p>
-              <p className="file-requirements">{t.fileRequirements}</p>
-              
-              <div className="button-group">
-                <button 
-                  className="btn btn-primary"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <FontAwesomeIcon icon={faImage} />
-                  {t.selectImage}
-                </button>
-                
-                <button 
-                  className="btn btn-secondary"
-                  onClick={startCamera}
-                >
-                  <FontAwesomeIcon icon={faCamera} />
-                  {t.takePhoto}
-                </button>
-              </div>
-
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/jpeg,image/jpg,image/png"
-                onChange={handleImageSelect}
-                style={{ display: 'none' }}
-              />
-            </div>
-          </div>
+          <UploadSection
+            isDragging={isDragging}
+            fileInputRef={fileInputRef}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onFileSelect={handleImageSelect}
+            onStartCamera={startCamera}
+            translations={{
+              dragImageHere: t.dragImageHere,
+              orClickToSelect: t.orClickToSelect,
+              fileRequirements: t.fileRequirements,
+              selectImage: t.selectImage,
+              takePhoto: t.takePhoto
+            }}
+          />
         )}
 
         {showCamera && (
-          <div className="camera-section">
-            <div className="camera-container">
-              <div className="camera-header">
-                <FontAwesomeIcon icon={faVideo} />
-                <span>{t.cameraActive}</span>
-              </div>
-              <video 
-                ref={videoRef}
-                autoPlay 
-                playsInline
-                muted
-                className="camera-video"
-              />
-              <div className="camera-info">
-                <p>{t.cameraInfo}</p>
-              </div>
-              <div className="camera-controls">
-                <button className="btn btn-capture" onClick={capturePhoto}>
-                  <FontAwesomeIcon icon={faCamera} />
-                  {t.capturePhoto}
-                </button>
-                <button className="btn btn-cancel" onClick={stopCamera}>
-                  <FontAwesomeIcon icon={faStop} />
-                  {t.cancel}
-                </button>
-              </div>
-            </div>
-          </div>
+          <CameraSection
+            videoRef={videoRef}
+            onCapture={capturePhoto}
+            onStop={stopCamera}
+            translations={{
+              cameraActive: t.cameraActive,
+              cameraInfo: t.cameraInfo,
+              capturePhoto: t.capturePhoto,
+              cancel: t.cancel
+            }}
+          />
         )}
 
         {selectedImage && (
@@ -334,60 +363,44 @@ function App() {
               </div>
             )}
 
-            {loading && (
-              <div className="loading">
-                <FontAwesomeIcon icon={faSpinner} className="spinner" spin />
-                <p>{t.analyzing}</p>
-              </div>
-            )}
+            {loading && <Loading message={t.analyzing} />}
 
-            {error && (
-              <div className="error-card">
-                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon" />
-                <p>{error}</p>
-              </div>
-            )}
+            {error && <ErrorMessage message={error} />}
 
             {prediction && (
-              <div className={`prediction-card ${prediction.es_reciclable ? 'recyclable' : 'non-recyclable'}`}>
-                <div className="prediction-header">
-                  <FontAwesomeIcon 
-                    icon={prediction.es_reciclable ? faRecycle : faCircleXmark} 
-                    className="prediction-icon"
-                  />
-                  <h2>{getClassName(prediction.clase)}</h2>
-                </div>
-                
-                <div className="confidence">
-                  <span>{t.confidence}: </span>
-                  <strong>{(prediction.confianza * 100).toFixed(1)}%</strong>
-                </div>
+              <PredictionCard
+                prediction={prediction}
+                getClassName={getClassName}
+                getMaterialMessage={getMaterialMessage}
+                getRecyclingAdvice={getRecyclingAdvice}
+                translations={{
+                  confidence: t.confidence,
+                  recyclable: t.recyclable,
+                  notRecyclable: t.notRecyclable,
+                  materialInfo: t.materialInfo,
+                  recyclingTips: t.recyclingTips
+                }}
+              />
+            )}
 
-                <div className="confidence-bar">
-                  <div 
-                    className="confidence-fill" 
-                    style={{ width: `${prediction.confianza * 100}%` }}
-                  ></div>
-                </div>
-
-                <div className={`recyclable-badge ${prediction.es_reciclable ? 'yes' : 'no'}`}>
-                  <FontAwesomeIcon icon={prediction.es_reciclable ? faCircleCheck : faCircleXmark} />
-                  {prediction.es_reciclable ? t.recyclable : t.notRecyclable}
-                </div>
-
-                <div className="info-message">
-                  <h3>{t.materialInfo}</h3>
-                  <p>{getMaterialMessage(prediction.clase)}</p>
-                </div>
-
-                <div className="advice-section">
-                  <h3>
-                    <FontAwesomeIcon icon={faRecycle} />
-                    {t.recyclingTips}
-                  </h3>
-                  <p>{getRecyclingAdvice(prediction.clase, prediction.es_reciclable)}</p>
-                </div>
-              </div>
+            {prediction && chatSession && (
+              <ChatSection
+                showChat={showChat}
+                chatMessages={chatMessages}
+                chatInput={chatInput}
+                chatLoading={chatLoading}
+                chatEndRef={chatEndRef}
+                onToggleChat={() => setShowChat(!showChat)}
+                onInputChange={setChatInput}
+                onSendMessage={handleSendMessage}
+                onKeyPress={handleChatKeyPress}
+                translations={{
+                  askQuestion: t.askQuestion,
+                  chatTitle: t.chatTitle,
+                  chatPlaceholder: t.chatPlaceholder,
+                  chatLoading: t.chatLoading
+                }}
+              />
             )}
 
             <button className="btn btn-reset" onClick={reset}>
@@ -398,9 +411,7 @@ function App() {
         )}
       </main>
 
-      <footer className="footer">
-        <p>&copy; {new Date().getFullYear()} Luis Carlos Picado Rojas. {t.footerCopyright}</p>
-      </footer>
+      <Footer copyrightText={t.footerCopyright} />
     </div>
   )
 }
