@@ -2,6 +2,7 @@ import './ChatSection.css'
 import type { RefObject } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faTimes, faPaperPlane, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import ReactMarkdown from 'react-markdown'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
@@ -66,7 +67,11 @@ export default function ChatSection({
           {chatMessages.map((msg, index) => (
             <div key={index} className={`chat-message ${msg.role}`}>
               <div className="message-content">
-                {msg.content}
+                {msg.role === 'assistant' ? (
+                  <ReactMarkdown>{msg.content}</ReactMarkdown>
+                ) : (
+                  msg.content
+                )}
               </div>
             </div>
           ))}
