@@ -122,13 +122,14 @@ function App() {
 
     try {
       const result = await predictImage(imageFile)
+      // Set prediction before disabling loading to prevent flash
       setPrediction(result)
+      setLoading(false)
       
       // Crear sesión de chat automáticamente
       await initializeChatSession(result)
     } catch (err) {
       setError(err instanceof Error ? err.message : t.unknownError)
-    } finally {
       setLoading(false)
     }
   }

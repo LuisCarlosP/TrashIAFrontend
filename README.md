@@ -1,115 +1,143 @@
 # TrashIA Frontend
 
-Frontend desarrollado con React + TypeScript + Vite para el sistema de clasificación inteligente de residuos TrashIA.
+A modern React + TypeScript web application for intelligent waste classification using AI. TrashIA helps users identify and properly sort recyclable materials through image recognition and an interactive chat assistant.
 
-## 🌟 Características
+## Features
 
-- **Upload de Imágenes**: Selecciona imágenes desde tu dispositivo
-- **Captura de Fotos**: Toma fotos directamente con la cámara
-- **Clasificación IA**: Identifica 6 tipos de residuos (cartón, vidrio, metal, papel, plástico, basura)
-- **Información de Reciclabilidad**: Indica si el material es reciclable
-- **Diseño Responsivo**: Funciona en móviles, tablets y desktop
-- **Tema Verde Ecológico**: Diseño moderno con paleta de colores verde
+- **Image Upload**: Drag and drop or select images from your device
+- **Camera Capture**: Take photos directly using your device camera
+- **AI Classification**: Identifies 6 types of waste (cardboard, glass, metal, paper, plastic, trash)
+- **Recyclability Info**: Indicates if the material is recyclable with detailed guidance
+- **AI Chat Assistant**: Ask questions about the identified material and get recycling tips
+- **Multi-language Support**: Available in English and Spanish
+- **Responsive Design**: Works on mobile, tablet, and desktop
+- **Modern UI**: Clean green eco-themed design with smooth animations
 
-## 🚀 Tecnologías
+## Tech Stack
 
-- React 18
-- TypeScript
-- Vite
-- CSS3 (Gradientes y animaciones)
+- React 19
+- TypeScript 5.9
+- Vite 7
+- FontAwesome Icons
+- React Markdown
+- CSS3 (Gradients and animations)
 
-## 📦 Instalación
+## Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Configurar variables de entorno
-# Para desarrollo local, crea un archivo .env.local
+# Set up environment variables
+# For local development, create a .env.local file
 cp .env.example .env.local
 
-# Editar .env.local con la URL de tu backend local
+# Edit .env.local with your local backend URL
 # VITE_API_URL=http://localhost:8000
 
-# El archivo .env tiene la URL de producción
+# The .env file contains the production URL
 # VITE_API_URL=https://trashia.onrender.com
 ```
 
-## 🏃‍♂️ Desarrollo
+## Development
 
 ```bash
-# Iniciar servidor de desarrollo
+# Start development server
 npm run dev
 ```
 
-El frontend estará disponible en `http://localhost:5173`
+The frontend will be available at `http://localhost:5173`
 
-## 🏗️ Build
+## Build
 
 ```bash
-# Generar build de producción
+# Generate production build
 npm run build
 
-# Preview del build
+# Preview the build
 npm run preview
 ```
 
-## 🔗 Backend
+## API Endpoints
 
-Este frontend se conecta al backend de TrashIA. Asegúrate de tener el backend corriendo en el puerto especificado en `.env`
+The frontend connects to the TrashIA backend API:
 
-Backend repository: `TrashIA/ModeloIATrashNet`
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/predict` | POST | Classify an image |
+| `/health` | GET | Check API health status |
+| `/chat/session` | POST | Create a chat session |
+| `/chat/message` | POST | Send a chat message |
+| `/chat/history/:id` | GET | Get chat history |
+| `/chat/session/:id` | DELETE | Delete a chat session |
+| `/chat/material` | PUT | Update material context |
 
-## 📱 Funcionalidades
+Backend repository: `https://github.com/LuisCarlosP/TrashIA`
 
-### Seleccionar Imagen
-1. Click en "Seleccionar Imagen"
-2. Elige una foto de tu dispositivo
-3. Espera la clasificación
+## Usage
 
-### Tomar Foto
-1. Click en "Tomar Foto"
-2. Permite acceso a la cámara
-3. Click en "Capturar"
-4. Espera la clasificación
+### Upload Image
+1. Click "Select Image" or drag and drop an image
+2. Click "Analyze Waste"
+3. View the classification result
 
-### Resultado
-- **Tipo de Material**: Clasificación del residuo
-- **Confianza**: Porcentaje de certeza de la IA
-- **Reciclabilidad**: Indica si es reciclable
-- **Información**: Consejos sobre cómo reciclar
+### Take Photo
+1. Click "Take Photo"
+2. Allow camera access
+3. Click "Capture"
+4. View the classification result
 
-## 🎨 Tema de Colores
+### Chat Assistant
+After analyzing an image, you can:
+1. Click "Ask a question"
+2. Type your question about the material
+3. Get AI-powered recycling advice
 
-- Verde Principal: `#2e7d32`
-- Verde Secundario: `#388e3c`
-- Verde Claro: `#43a047`
-- Fondo: Gradiente verde claro
+### Classification Results
+- **Material Type**: Classification of the waste
+- **Confidence**: AI certainty percentage
+- **Recyclability**: Whether the material is recyclable
+- **Recycling Tips**: How to properly recycle the material
 
-## 📄 Licencia
+## Supported Waste Types
+
+| Type | Recyclable | Container |
+|------|------------|-----------|
+| Cardboard | Yes | Blue bin |
+| Glass | Yes | Green bin |
+| Metal | Yes | Yellow bin |
+| Paper | Yes | Blue bin |
+| Plastic | Yes | Yellow bin |
+| Trash | No | General waste |
+
+## Color Theme
+
+- Primary Green: `#2e7d32`
+- Secondary Green: `#388e3c`
+- Light Green: `#43a047`
+- Background: Light green gradient
+
+## Project Structure
+
+```
+src/
+  components/
+    Header.tsx          # App header with language toggle
+    UploadSection.tsx   # Image upload and drag-drop
+    CameraSection.tsx   # Camera capture interface
+    PredictionCard.tsx  # Classification results display
+    ChatSection.tsx     # AI chat assistant
+    LoadingError.tsx    # Loading spinner and error messages
+    Footer.tsx          # App footer
+  services/
+    api.ts              # API client functions
+  translations.ts       # i18n translations (EN/ES)
+  App.tsx               # Main application component
+  App.css               # Global styles
+public/
+  trashia-icon.svg      # App icon
+```
+
+## License
 
 MIT
-
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
