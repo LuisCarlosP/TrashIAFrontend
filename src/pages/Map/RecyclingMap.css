@@ -1,0 +1,150 @@
+.map-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f0f4f3 0%, #e1ebe9 100%);
+  min-height: 0;
+  height: 100%;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  min-height: 400px;
+  height: 100%;
+}
+
+.leaflet-map {
+  height: 100%;
+  width: 100%;
+  min-height: 400px;
+  z-index: 1;
+}
+
+.map-loading,
+.map-error {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading-icon {
+  font-size: 3rem;
+  color: #2e7d32;
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: #f44336;
+}
+
+.btn-retry {
+  padding: 0.75rem 1.5rem;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn-retry:hover {
+  background: #1b5e20;
+}
+
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.marker-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+}
+
+.marker-icon {
+  transform: rotate(45deg);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-location-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.user-marker-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.user-marker-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: #2196f3;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.5);
+}
+
+.user-marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(33, 150, 243, 0.3);
+  border-radius: 50%;
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.user-popup {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.no-points-message {
+  background: #fff3e0;
+  padding: 1rem;
+  text-align: center;
+  color: #e65100;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    min-height: 350px;
+  }
+}

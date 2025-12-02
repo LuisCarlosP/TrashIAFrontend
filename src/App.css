@@ -86,19 +86,12 @@
   padding: 1.2rem 3rem;
   font-size: 1.2rem;
   box-shadow: 0 4px 12px rgba(56, 142, 60, 0.3);
-  animation: pulse-button 2s ease-in-out infinite;
 }
 
 .btn-analyze:hover {
   background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(56, 142, 60, 0.4);
-  animation: none;
-}
-
-@keyframes pulse-button {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
 }
 
 .btn-reset {

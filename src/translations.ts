@@ -4,6 +4,35 @@ export const translations = {
     appTitle: 'TrashIA',
     appSubtitle: 'Clasificador Inteligente de Residuos',
     
+    // Navigation
+    navHome: 'Inicio',
+    navClassifier: 'TrashIA',
+    navMap: 'Mapa',
+    menuToggle: 'Menú',
+    
+    // Home Page
+    heroTitle: '¡Recicla de manera inteligente!',
+    heroSubtitle: 'Usa inteligencia artificial para clasificar tus residuos',
+    heroDescription: 'Toma una foto o sube una imagen de tu residuo y te diremos qué tipo es y cómo reciclarlo correctamente.',
+    startClassifying: 'Empezar a Clasificar',
+    findRecyclingPoints: 'Encontrar Puntos de Reciclaje',
+    featureClassifierTitle: 'Clasificador con IA',
+    featureClassifierDesc: 'Nuestra IA identifica 6 tipos de residuos: cartón, vidrio, metal, papel, plástico y basura general.',
+    featureMapTitle: 'Mapa de Reciclaje',
+    featureMapDesc: 'Encuentra puntos de reciclaje cercanos a tu ubicación con información detallada.',
+    featureChatTitle: 'Asistente Virtual',
+    featureChatDesc: 'Pregunta cualquier duda sobre reciclaje y obtén consejos personalizados.',
+    howItWorksTitle: '¿Cómo Funciona?',
+    step1Title: 'Sube tu Imagen',
+    step1Desc: 'Toma una foto o selecciona una imagen de tu dispositivo.',
+    step2Title: 'Análisis con IA',
+    step2Desc: 'Nuestra inteligencia artificial analiza el residuo.',
+    step3Title: 'Recibe Instrucciones',
+    step3Desc: 'Obtén información sobre cómo reciclarlo correctamente.',
+    ctaTitle: '¿Listo para empezar?',
+    ctaSubtitle: 'Clasifica tu primer residuo y ayuda al planeta.',
+    ctaButton: 'Clasificar Ahora',
+
     // Upload Section
     dragImageHere: 'Arrastra tu imagen aquí',
     orClickToSelect: 'o haz clic para seleccionar',
@@ -75,7 +104,52 @@ export const translations = {
     askQuestion: 'Hacer una pregunta',
     closeChat: 'Cerrar chat',
     
+    // Map
+    mapTitle: 'Puntos de Reciclaje',
+    mapSubtitle: 'Encuentra lugares cercanos para reciclar tus residuos',
+    loadingLocation: 'Obteniendo tu ubicación...',
+    loadingPoints: 'Buscando puntos de reciclaje...',
+    errorLocation: 'No se pudo obtener tu ubicación. Verifica los permisos.',
+    errorPoints: 'Error al cargar puntos de reciclaje.',
+    retry: 'Reintentar',
+    centerOnMe: 'Centrar en mí',
+    filters: 'Filtros',
+    allTypes: 'Todos los tipos',
+    noPointsFound: 'No se encontraron puntos de reciclaje en esta área.',
+    pointsFound: 'puntos encontrados',
+    getDirections: 'Cómo llegar',
+    openWebsite: 'Sitio web',
+    call: 'Llamar',
+    openingHours: 'Horario',
+    accepts: 'Acepta',
+    filterPlastic: 'Plástico',
+    filterGlass: 'Vidrio',
+    filterPaper: 'Papel',
+    filterCardboard: 'Cartón',
+    filterMetal: 'Metal',
+    filterElectronics: 'Electrónicos',
+    filterBatteries: 'Pilas',
+    filterClothes: 'Ropa',
+    filterGeneral: 'General',
+    searchRadius: 'Radio de búsqueda',
+    
+    // Material types for map
+    typePlastic: 'Plástico',
+    typeGlass: 'Vidrio',
+    typePaper: 'Papel',
+    typeCardboard: 'Cartón',
+    typeMetal: 'Metal',
+    typeElectronics: 'Electrónicos',
+    typeBatteries: 'Pilas',
+    typeClothes: 'Ropa',
+    typeGeneral: 'General',
+    typeOrganic: 'Orgánico',
+    typeTextile: 'Textil',
+    typeOil: 'Aceite',
+    typeMedicine: 'Medicamentos',
+    
     // Footer
+    footerText: 'TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial',
     footerCopyright: 'Todos los derechos reservados.'
   },
   
@@ -83,6 +157,35 @@ export const translations = {
     // Header
     appTitle: 'TrashIA',
     appSubtitle: 'Intelligent Waste Classifier',
+    
+    // Navigation
+    navHome: 'Home',
+    navClassifier: 'TrashIA',
+    navMap: 'Map',
+    menuToggle: 'Menu',
+    
+    // Home Page
+    heroTitle: 'Recycle Smarter!',
+    heroSubtitle: 'Use artificial intelligence to classify your waste',
+    heroDescription: 'Take a photo or upload an image of your waste and we will tell you what type it is and how to recycle it properly.',
+    startClassifying: 'Start Classifying',
+    findRecyclingPoints: 'Find Recycling Points',
+    featureClassifierTitle: 'AI Classifier',
+    featureClassifierDesc: 'Our AI identifies 6 types of waste: cardboard, glass, metal, paper, plastic, and general waste.',
+    featureMapTitle: 'Recycling Map',
+    featureMapDesc: 'Find recycling points near your location with detailed information.',
+    featureChatTitle: 'Virtual Assistant',
+    featureChatDesc: 'Ask any recycling questions and get personalized tips.',
+    howItWorksTitle: 'How Does It Work?',
+    step1Title: 'Upload Your Image',
+    step1Desc: 'Take a photo or select an image from your device.',
+    step2Title: 'AI Analysis',
+    step2Desc: 'Our artificial intelligence analyzes the waste.',
+    step3Title: 'Get Instructions',
+    step3Desc: 'Receive information on how to recycle it properly.',
+    ctaTitle: 'Ready to start?',
+    ctaSubtitle: 'Classify your first waste and help the planet.',
+    ctaButton: 'Classify Now',
     
     // Upload Section
     dragImageHere: 'Drag your image here',
@@ -155,6 +258,50 @@ export const translations = {
     askQuestion: 'Ask a question',
     closeChat: 'Close chat',
     
+    // Map
+    mapTitle: 'Recycling Points',
+    mapSubtitle: 'Find nearby places to recycle your waste',
+    loadingLocation: 'Getting your location...',
+    loadingPoints: 'Searching for recycling points...',
+    errorLocation: 'Could not get your location. Check permissions.',
+    errorPoints: 'Error loading recycling points.',
+    retry: 'Retry',
+    centerOnMe: 'Center on me',
+    filters: 'Filters',
+    allTypes: 'All types',
+    noPointsFound: 'No recycling points found in this area.',
+    pointsFound: 'points found',
+    getDirections: 'Get Directions',
+    openWebsite: 'Website',
+    call: 'Call',
+    openingHours: 'Hours',
+    accepts: 'Accepts',
+    filterPlastic: 'Plastic',
+    filterGlass: 'Glass',
+    filterPaper: 'Paper',
+    filterCardboard: 'Cardboard',
+    filterMetal: 'Metal',
+    filterElectronics: 'Electronics',
+    filterBatteries: 'Batteries',
+    filterClothes: 'Clothes',
+    filterGeneral: 'General',
+    searchRadius: 'Search radius',
+    
+    // Material types for map
+    typePlastic: 'Plastic',
+    typeGlass: 'Glass',
+    typePaper: 'Paper',
+    typeCardboard: 'Cardboard',
+    typeMetal: 'Metal',
+    typeElectronics: 'Electronics',
+    typeBatteries: 'Batteries',
+    typeClothes: 'Clothes',
+    typeGeneral: 'General',
+    typeOrganic: 'Organic',
+    typeTextile: 'Textile',
+    typeOil: 'Oil',
+    typeMedicine: 'Medicine',
+    
     // Footer
     footerText: 'TrashIA - Helping to classify waste with Artificial Intelligence',
     footerCopyright: 'All rights reserved.'
@@ -162,3 +309,4 @@ export const translations = {
 } as const;
 
 export type Language = 'es' | 'en';
+

@@ -1,0 +1,43 @@
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(46, 125, 50, 0.2);
+}
+
+.spinner {
+  font-size: 3rem;
+  color: #388e3c;
+  margin-bottom: 1rem;
+}
+
+.loading p {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Error Card */
+.error-card {
+  background: #ffebee;
+  border: 2px solid #ef5350;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.error-icon {
+  font-size: 2rem;
+  color: #c62828;
+}
+
+.error-card p {
+  color: #c62828;
+  font-weight: 600;
+  margin: 0;
+}
