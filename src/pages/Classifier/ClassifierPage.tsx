@@ -7,7 +7,7 @@ import {
   createChatSession,
   sendChatMessage,
   type ChatSession
-} from '../../services/api';
+} from '../../services/Classifier';
 import {
   UploadSection,
   CameraSection,
@@ -201,7 +201,6 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   };
 
   const handleToggleChat = async () => {
-    // Si el chat no está abierto y no hay sesión, crear una
     if (!showChat && !chatSession && prediction) {
       setChatLoading(true);
       try {

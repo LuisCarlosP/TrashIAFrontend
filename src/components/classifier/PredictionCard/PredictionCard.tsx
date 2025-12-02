@@ -1,7 +1,7 @@
 import './PredictionCard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRecycle, faCircleXmark, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
-import type { PredictionResponse } from '../../../services/api'
+import type { PredictionResponse } from '../../../services/Classifier'
 
 interface PredictionCardProps {
   prediction: PredictionResponse

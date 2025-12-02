@@ -8,6 +8,7 @@ import {
   faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 import './HomePage.css';
+import backgroundImage from '../../assets/Background.webp';
 
 interface HomePageProps {
   t: {
@@ -40,6 +41,15 @@ export default function HomePage({ t }: HomePageProps) {
     <div className="home-page">
       {/* Hero Section */}
       <section className="hero-section">
+        <div className="hero-background">
+          <img 
+            src={backgroundImage} 
+            alt="" 
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
         <div className="hero-content">
           <div className="hero-icon">
             <FontAwesomeIcon icon={faLeaf} />
