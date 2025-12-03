@@ -1,0 +1,101 @@
+.material-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.material-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
+}
+
+.material-section h2 svg {
+  color: #64748b;
+}
+
+.material-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.material-bar {
+  display: grid;
+  grid-template-columns: 140px 1fr 45px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.material-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.material-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.material-info i {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.material-name {
+  font-weight: 500;
+  color: #334155;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.material-count {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.bar-container {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.material-percentage {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .material-section {
+    padding: 1.25rem;
+  }
+
+  .material-bar {
+    grid-template-columns: 120px 1fr 40px;
+    gap: 0.75rem;
+  }
+
+  .material-name {
+    font-size: 0.8rem;
+  }
+}

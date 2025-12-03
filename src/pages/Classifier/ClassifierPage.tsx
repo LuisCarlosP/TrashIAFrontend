@@ -8,6 +8,7 @@ import {
   sendChatMessage,
   type ChatSession
 } from '../../services/Classifier';
+import { saveClassification } from '../../services/history';
 import {
   UploadSection,
   CameraSection,
@@ -173,6 +174,14 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
       const result = await predictImage(imageFile);
       setPrediction(result);
       setLoading(false);
+
+      // Guardar en historial
+      await saveClassification(
+        result.clase,
+        result.confianza,
+        result.es_reciclable,
+        imageFile
+      );
 
       await initializeChatSession(result);
     } catch (err) {

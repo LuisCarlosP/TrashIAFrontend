@@ -9,7 +9,8 @@ import {
   faTimes,
   faCamera,
   faMapLocationDot,
-  faHome
+  faHome,
+  faChartBar
 } from '@fortawesome/free-solid-svg-icons'
 import type { Language } from '../../../translations'
 
@@ -21,6 +22,7 @@ interface HeaderProps {
     navHome: string
     navClassifier: string
     navMap: string
+    navStats: string
     menuToggle: string
   }
 }
@@ -71,6 +73,13 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
             <FontAwesomeIcon icon={faMapLocationDot} />
             <span>{t.navMap}</span>
           </Link>
+          <Link 
+            to="/stats" 
+            className={`nav-link ${isActive('/stats') ? 'active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faChartBar} />
+            <span>{t.navStats}</span>
+          </Link>
         </nav>
 
         {/* Right side actions */}
@@ -116,6 +125,14 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
         >
           <FontAwesomeIcon icon={faMapLocationDot} />
           <span>{t.navMap}</span>
+        </Link>
+        <Link 
+          to="/stats" 
+          className={`nav-mobile-link ${isActive('/stats') ? 'active' : ''}`}
+          onClick={closeMenu}
+        >
+          <FontAwesomeIcon icon={faChartBar} />
+          <span>{t.navStats}</span>
         </Link>
       </nav>
 

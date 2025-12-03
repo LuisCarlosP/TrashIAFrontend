@@ -1,0 +1,99 @@
+.history-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.history-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
+}
+
+.history-section h2 svg {
+  color: #64748b;
+}
+
+.history-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.history-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-danger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: white;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-secondary {
+  padding: 0.625rem 1.25rem;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.confirm-dialog {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fef2f2;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+.confirm-dialog span {
+  color: #991b1b;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .history-section {
+    padding: 1.25rem;
+  }
+
+  .history-list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirm-dialog {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

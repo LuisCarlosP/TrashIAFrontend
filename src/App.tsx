@@ -8,6 +8,7 @@ import { Header, Footer, Loading } from './components'
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const ClassifierPage = lazy(() => import('./pages/Classifier/ClassifierPage'))
 const RecyclingMap = lazy(() => import('./pages/Map/RecyclingMap'))
+const StatsPage = lazy(() => import('./pages/Stats/StatsPage'))
 
 function App() {
   const [language, setLanguage] = useState<Language>('es')
@@ -28,6 +29,7 @@ function App() {
             navHome: t.navHome,
             navClassifier: t.navClassifier,
             navMap: t.navMap,
+            navStats: t.navStats,
             menuToggle: t.menuToggle
           }}
         />
@@ -37,6 +39,7 @@ function App() {
             <Route path="/" element={<HomePage t={t} />} />
             <Route path="/trashia" element={<ClassifierPage language={language} t={t} />} />
             <Route path="/map" element={<RecyclingMap t={t} />} />
+            <Route path="/stats" element={<StatsPage language={language} t={t} />} />
           </Routes>
         </Suspense>
 

@@ -150,7 +150,33 @@ export const translations = {
     
     // Footer
     footerText: 'TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial',
-    footerCopyright: 'Todos los derechos reservados.'
+    footerCopyright: 'Todos los derechos reservados.',
+
+    // Stats Page
+    navStats: 'Estadísticas',
+    statsTitle: 'Tus Estadísticas',
+    statsSubtitle: 'Sigue tu progreso de reciclaje',
+    totalClassifications: 'Clasificaciones Totales',
+    recyclableItems: 'Items Reciclables',
+    nonRecyclableItems: 'Items No Reciclables',
+    co2Saved: 'CO₂ Ahorrado',
+    waterSaved: 'Agua Ahorrada',
+    energySaved: 'Energía Ahorrada',
+    treesEquivalent: 'Equivalente en Árboles',
+    streakDays: 'Días Seguidos',
+    materialBreakdown: 'Desglose por Material',
+    weeklyActivity: 'Actividad Semanal',
+    recentHistory: 'Historial Reciente',
+    noHistory: 'Aún no has clasificado nada',
+    clearHistory: 'Borrar Historial',
+    clearHistoryConfirm: '¿Estás seguro de borrar todo el historial?',
+    environmentalImpact: 'Impacto Ambiental',
+    yourProgress: 'Tu Progreso',
+    delete: 'Eliminar',
+    today: 'Hoy',
+    yesterday: 'Ayer',
+    daysAgo: 'días atrás',
+    day: 'día'
   },
   
   en: {
@@ -304,7 +330,33 @@ export const translations = {
     
     // Footer
     footerText: 'TrashIA - Helping to classify waste with Artificial Intelligence',
-    footerCopyright: 'All rights reserved.'
+    footerCopyright: 'All rights reserved.',
+
+    // Stats Page
+    navStats: 'Stats',
+    statsTitle: 'Your Statistics',
+    statsSubtitle: 'Track your recycling progress',
+    totalClassifications: 'Total Classifications',
+    recyclableItems: 'Recyclable Items',
+    nonRecyclableItems: 'Non-Recyclable Items',
+    co2Saved: 'CO₂ Saved',
+    waterSaved: 'Water Saved',
+    energySaved: 'Energy Saved',
+    treesEquivalent: 'Tree Equivalent',
+    streakDays: 'Streak Days',
+    materialBreakdown: 'Material Breakdown',
+    weeklyActivity: 'Weekly Activity',
+    recentHistory: 'Recent History',
+    noHistory: 'You haven\'t classified anything yet',
+    clearHistory: 'Clear History',
+    clearHistoryConfirm: 'Are you sure you want to clear all history?',
+    environmentalImpact: 'Environmental Impact',
+    yourProgress: 'Your Progress',
+    delete: 'Delete',
+    today: 'Today',
+    yesterday: 'Yesterday',
+    daysAgo: 'days ago',
+    day: 'day'
   }
 } as const;
 
