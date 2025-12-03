@@ -9,6 +9,7 @@ React + TypeScript web application for AI-powered waste classification.
 - Vite 7
 - Leaflet (maps)
 - FontAwesome
+- EmailJS (contact form)
 
 ## Installation
 
@@ -32,8 +33,13 @@ npm run build
 
 ## Environment Variables
 
+For local development, create a `.env.local` file:
+
 ```env
 VITE_API_URL=http://localhost:8000
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
 ## Structure
@@ -55,6 +61,8 @@ src/
       MapControls/
       MapFilters/
       PointPopup/
+    contact/
+      ContactForm/
   pages/
     HomePage/
     Classifier/
