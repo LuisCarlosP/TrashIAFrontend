@@ -7,6 +7,7 @@ import {
   faRecycle,
   faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
+import ContactForm from '../../components/contact/ContactForm';
 import './HomePage.css';
 import backgroundImage from '../../assets/Background.webp';
 
@@ -33,6 +34,19 @@ interface HomePageProps {
     ctaTitle: string;
     ctaSubtitle: string;
     ctaButton: string;
+    // Contact Section
+    contactTitle: string;
+    contactSubtitle: string;
+    contactNameLabel: string;
+    contactNamePlaceholder: string;
+    contactEmailLabel: string;
+    contactEmailPlaceholder: string;
+    contactMessageLabel: string;
+    contactMessagePlaceholder: string;
+    contactSendButton: string;
+    contactSending: string;
+    contactSuccess: string;
+    contactError: string;
   };
 }
 
@@ -137,6 +151,9 @@ export default function HomePage({ t }: HomePageProps) {
           {t.ctaButton}
         </Link>
       </section>
+
+      {/* Contact Section */}
+      <ContactForm t={t} />
     </div>
   );
 }

@@ -33,6 +33,20 @@ export const translations = {
     ctaSubtitle: 'Clasifica tu primer residuo y ayuda al planeta.',
     ctaButton: 'Clasificar Ahora',
 
+    // Contact Section
+    contactTitle: 'Contáctanos',
+    contactSubtitle: '¿Tienes preguntas o sugerencias? ¡Nos encantaría saber de ti!',
+    contactNameLabel: 'Nombre',
+    contactNamePlaceholder: 'Tu nombre',
+    contactEmailLabel: 'Email',
+    contactEmailPlaceholder: 'tu@email.com',
+    contactMessageLabel: 'Mensaje',
+    contactMessagePlaceholder: 'Escribe tu mensaje aquí...',
+    contactSendButton: 'Enviar Mensaje',
+    contactSending: 'Enviando...',
+    contactSuccess: '¡Mensaje enviado!',
+    contactError: 'Error al enviar',
+
     // Upload Section
     dragImageHere: 'Arrastra tu imagen aquí',
     orClickToSelect: 'o haz clic para seleccionar',
@@ -212,6 +226,20 @@ export const translations = {
     ctaTitle: 'Ready to start?',
     ctaSubtitle: 'Classify your first waste and help the planet.',
     ctaButton: 'Classify Now',
+
+    // Contact Section
+    contactTitle: 'Contact Us',
+    contactSubtitle: 'Have questions or suggestions? We\'d love to hear from you!',
+    contactNameLabel: 'Name',
+    contactNamePlaceholder: 'Your name',
+    contactEmailLabel: 'Email',
+    contactEmailPlaceholder: 'your@email.com',
+    contactMessageLabel: 'Message',
+    contactMessagePlaceholder: 'Write your message here...',
+    contactSendButton: 'Send Message',
+    contactSending: 'Sending...',
+    contactSuccess: 'Message sent!',
+    contactError: 'Error sending',
     
     // Upload Section
     dragImageHere: 'Drag your image here',
