@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: '/TrashIAFrontend/',
   build: {
-    // Dividir el bundle en chunks más pequeños
+    outDir: 'docs',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -15,11 +14,9 @@ export default defineConfig({
         }
       }
     },
-    // Comprimir assets
-    assetsInlineLimit: 4096, // 4kb - inline pequeños assets
-    chunkSizeWarningLimit: 500, // Advertir si un chunk > 500kb
+    assetsInlineLimit: 4096, 
+    chunkSizeWarningLimit: 500, 
   },
-  // Optimizar dependencias en desarrollo
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom']
   }
