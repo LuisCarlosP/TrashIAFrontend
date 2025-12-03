@@ -47,28 +47,37 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 src/
   components/
-    common/
-      Header/
-      Footer/
-      LoadingError/
     classifier/
-      UploadSection/
       CameraCapture/
-      PredictionCard/
       ChatSection/
+      PredictionCard/
+      UploadSection/
+    common/
+      Footer/
+      Header/
+      LoadingError/
+    contact/
+      ContactForm.tsx
+      ContactForm.css
     map/
-      MapHeader/
       MapControls/
       MapFilters/
+      MapHeader/
       PointPopup/
-    contact/
-      ContactForm/
+    stats/
+      HistoryItem/
+      HistoryList/
+      MaterialChart/
+      StatCard/
+      WeeklyChart/
   pages/
-    HomePage/
     Classifier/
+    HomePage/
     Map/
+    Stats/
   services/
-    api.ts
+    Classifier.ts
+    history.ts
     location.ts
   translations.ts
   App.tsx
