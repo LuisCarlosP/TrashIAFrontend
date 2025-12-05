@@ -37,6 +37,7 @@ For local development, create a `.env.local` file:
 
 ```env
 VITE_API_URL=http://localhost:8000
+VITE_API_KEY=your_secret_api_key
 VITE_EMAILJS_SERVICE_ID=your_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
