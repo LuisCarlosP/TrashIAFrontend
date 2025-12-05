@@ -43,7 +43,7 @@ export const getCurrentPosition = (): Promise<Coordinates> => {
 
     let bestPosition: GeolocationPosition | null = null;
     let watchId: number;
-    
+
     const timeoutId = setTimeout(() => {
       navigator.geolocation.clearWatch(watchId);
       if (bestPosition) {
@@ -61,7 +61,7 @@ export const getCurrentPosition = (): Promise<Coordinates> => {
         if (!bestPosition || position.coords.accuracy < bestPosition.coords.accuracy) {
           bestPosition = position;
         }
-        
+
         if (position.coords.accuracy <= 20) {
           clearTimeout(timeoutId);
           navigator.geolocation.clearWatch(watchId);
@@ -74,7 +74,7 @@ export const getCurrentPosition = (): Promise<Coordinates> => {
       (error) => {
         clearTimeout(timeoutId);
         navigator.geolocation.clearWatch(watchId);
-        
+
         if (bestPosition) {
           resolve({
             latitude: bestPosition.coords.latitude,
@@ -82,7 +82,7 @@ export const getCurrentPosition = (): Promise<Coordinates> => {
           });
           return;
         }
-        
+
         let message = 'Unknown error';
         switch (error.code) {
           case error.PERMISSION_DENIED:
@@ -139,123 +139,34 @@ export const formatDistance = (meters: number): string => {
 export const fetchRecyclingPoints = async (
   latitude: number,
   longitude: number,
-  radiusMeters: number = 5000,
+  radiusMeters: number = 2000,
   types?: string[]
 ): Promise<RecyclingPoint[]> => {
-  try {
-    // Build query params
-    const params = new URLSearchParams({
-      latitude: latitude.toString(),
-      longitude: longitude.toString(),
-      radius: radiusMeters.toString(),
-    });
-    
-    if (types && types.length > 0) {
-      params.append('types', types.join(','));
-    }
+  // Build query params
+  const params = new URLSearchParams({
+    latitude: latitude.toString(),
+    longitude: longitude.toString(),
+    radius: radiusMeters.toString(),
+  });
 
-    const response = await fetch(`${API_URL}/location/recycling-points?${params}`);
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.detail || 'Failed to fetch recycling points');
-    }
-
-    const data: RecyclingPointsResponse = await response.json();
-    
-    // Map backend response to frontend format (convert snake_case to camelCase)
-    return data.points.map(point => ({
-      ...point,
-      openingHours: point.openingHours || (point as any).opening_hours,
-    }));
-  } catch (error) {
-    console.error('Error fetching recycling points from backend:', error);
-    
-    // Fallback to direct Overpass API if backend fails
-    console.log('Falling back to direct Overpass API...');
-    return fetchRecyclingPointsFromOverpass(latitude, longitude, radiusMeters);
+  if (types && types.length > 0) {
+    params.append('types', types.join(','));
   }
-};
 
-// Fallback: Query OpenStreetMap Overpass API directly
-const fetchRecyclingPointsFromOverpass = async (
-  latitude: number,
-  longitude: number,
-  radiusMeters: number = 5000
-): Promise<RecyclingPoint[]> => {
-  const query = `
-    [out:json][timeout:25];
-    (
-      node["amenity"="recycling"](around:${radiusMeters},${latitude},${longitude});
-      node["recycling_type"](around:${radiusMeters},${latitude},${longitude});
-      way["amenity"="recycling"](around:${radiusMeters},${latitude},${longitude});
-    );
-    out body;
-    >;
-    out skel qt;
-  `;
+  const response = await fetch(`${API_URL}/location/recycling-points?${params}`);
 
-  try {
-    const response = await fetch('https://overpass-api.de/api/interpreter', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `data=${encodeURIComponent(query)}`,
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch recycling points');
-    }
-
-    const data = await response.json();
-    
-    const points: RecyclingPoint[] = data.elements
-      .filter((el: any) => el.type === 'node' && el.lat && el.lon)
-      .map((el: any) => {
-        const types: string[] = [];
-        
-        // Check for recycling types in tags
-        if (el.tags) {
-          if (el.tags['recycling:plastic'] === 'yes') types.push('plastic');
-          if (el.tags['recycling:glass'] === 'yes' || el.tags['recycling:glass_bottles'] === 'yes') types.push('glass');
-          if (el.tags['recycling:paper'] === 'yes') types.push('paper');
-          if (el.tags['recycling:cardboard'] === 'yes') types.push('cardboard');
-          if (el.tags['recycling:cans'] === 'yes' || el.tags['recycling:scrap_metal'] === 'yes') types.push('metal');
-          if (el.tags['recycling:batteries'] === 'yes') types.push('batteries');
-          if (el.tags['recycling:electrical_appliances'] === 'yes' || el.tags['recycling:small_appliances'] === 'yes') types.push('electronics');
-          if (el.tags['recycling:clothes'] === 'yes') types.push('clothes');
-        }
-
-        // If no specific types found, mark as general
-        if (types.length === 0) {
-          types.push('general');
-        }
-
-        const distance = calculateDistance(latitude, longitude, el.lat, el.lon);
-
-        return {
-          id: el.id.toString(),
-          name: el.tags?.name || el.tags?.operator || 'Recycling Point',
-          latitude: el.lat,
-          longitude: el.lon,
-          address: el.tags?.['addr:street'] 
-            ? `${el.tags['addr:street']} ${el.tags['addr:housenumber'] || ''}`
-            : undefined,
-          types,
-          openingHours: el.tags?.opening_hours,
-          phone: el.tags?.phone,
-          website: el.tags?.website,
-          distance,
-        };
-      })
-      .sort((a: RecyclingPoint, b: RecyclingPoint) => (a.distance || 0) - (b.distance || 0));
-
-    return points;
-  } catch (error) {
-    console.error('Error fetching recycling points from Overpass:', error);
-    throw error;
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.detail || 'Error al buscar puntos de reciclaje');
   }
+
+  const data: RecyclingPointsResponse = await response.json();
+
+  // Map backend response to frontend format (convert snake_case to camelCase)
+  return data.points.map(point => ({
+    ...point,
+    openingHours: point.openingHours || (point as any).opening_hours,
+  }));
 };
 
 // Get Font Awesome icon class for material type

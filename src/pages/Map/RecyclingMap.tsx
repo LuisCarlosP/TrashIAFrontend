@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet'
 import L from 'leaflet'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
+import {
   faSpinner,
   faExclamationTriangle,
   faBottleWater,
@@ -17,12 +17,12 @@ import {
   type IconDefinition
 } from '@fortawesome/free-solid-svg-icons'
 import { renderToString } from 'react-dom/server'
-import { 
-  getCurrentPosition, 
-  fetchRecyclingPoints, 
+import {
+  getCurrentPosition,
+  fetchRecyclingPoints,
   formatDistance,
   type Coordinates,
-  type RecyclingPoint 
+  type RecyclingPoint
 } from '../../services/location'
 import { MapHeader, MapControls, MapFilters, PointPopup } from '../../components/map'
 import 'leaflet/dist/leaflet.css'
@@ -61,7 +61,7 @@ const createCustomIcon = (color: string, materialType: string) => {
   const iconHtml = renderToString(
     <FontAwesomeIcon icon={icon} style={{ color: 'white', fontSize: '16px' }} />
   )
-  
+
   return L.divIcon({
     className: 'custom-marker',
     html: `
@@ -148,7 +148,7 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
   const [error, setError] = useState<string | null>(null)
   const [showFilters, setShowFilters] = useState(false)
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
-  const [searchRadius, setSearchRadius] = useState(5000)
+  const [searchRadius, setSearchRadius] = useState(2000)
   const [shouldRecenter, setShouldRecenter] = useState(false)
 
   const translateType = (type: string): string => {
@@ -208,7 +208,7 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
 
   const loadRecyclingPoints = useCallback(async () => {
     if (!userLocation) return
-    
+
     setLoadingPoints(true)
     try {
       const points = await fetchRecyclingPoints(
@@ -231,8 +231,8 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
   }
 
   const toggleFilter = (type: string) => {
-    setSelectedTypes(prev => 
-      prev.includes(type) 
+    setSelectedTypes(prev =>
+      prev.includes(type)
         ? prev.filter(t => t !== type)
         : [...prev, type]
     )
@@ -244,9 +244,9 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
 
   const filteredPoints = selectedTypes.length === 0
     ? recyclingPoints
-    : recyclingPoints.filter(point => 
-        point.types.some(type => selectedTypes.includes(type))
-      )
+    : recyclingPoints.filter(point =>
+      point.types.some(type => selectedTypes.includes(type))
+    )
 
   const openDirections = (point: RecyclingPoint) => {
     if (!userLocation) return
@@ -327,7 +327,7 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <Marker 
+          <Marker
             position={[userLocation.latitude, userLocation.longitude]}
             icon={userLocationIcon}
           >
