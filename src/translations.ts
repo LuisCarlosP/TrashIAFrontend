@@ -3,13 +3,14 @@ export const translations = {
     // Header
     appTitle: 'TrashIA',
     appSubtitle: 'Clasificador Inteligente de Residuos',
-    
+
     // Navigation
     navHome: 'Inicio',
     navClassifier: 'TrashIA',
     navMap: 'Mapa',
+    navScanner: 'Escáner',
     menuToggle: 'Menú',
-    
+
     // Home Page
     heroTitle: '¡Recicla de manera inteligente!',
     heroSubtitle: 'Usa inteligencia artificial para clasificar tus residuos',
@@ -53,18 +54,18 @@ export const translations = {
     fileRequirements: 'Solo JPEG o PNG • Máximo 5MB',
     selectImage: 'Seleccionar Imagen',
     takePhoto: 'Tomar Foto',
-    
+
     // Camera Section
     cameraActive: 'Cámara Activa - Posiciona el objeto',
     cameraInfo: 'Asegúrate de que el objeto esté bien iluminado y enfocado',
     capturePhoto: 'Capturar Foto',
     cancel: 'Cancelar',
-    
+
     // Analyze Section
     imageLoaded: 'Imagen cargada. Haz clic en el botón para analizarla.',
     analyzeWaste: 'Analizar Residuo',
     analyzing: 'Analizando imagen... La primera imagen puede tardar hasta 1 minuto.',
-    
+
     // Results
     confidence: 'Confianza',
     recyclable: 'Reciclable',
@@ -72,7 +73,7 @@ export const translations = {
     materialInfo: 'Información del material',
     recyclingTips: 'Consejos de Reciclaje',
     analyzeAnother: 'Analizar Otro Residuo',
-    
+
     // Material Classes
     cardboard: 'Cartón',
     glass: 'Vidrio',
@@ -80,7 +81,7 @@ export const translations = {
     paper: 'Papel',
     plastic: 'Plástico',
     trash: 'Basura General',
-    
+
     // Material Messages
     cardboardMessage: 'El cartón es reciclable siempre que esté limpio y seco.',
     glassMessage: 'El vidrio es 100% reciclable y puede reciclarse infinitas veces.',
@@ -88,7 +89,7 @@ export const translations = {
     paperMessage: 'El papel es reciclable siempre que no esté muy sucio.',
     plasticMessage: 'El plástico es reciclable, pero asegúrate de limpiarlo primero.',
     trashMessage: 'Este material no es reciclable y debe desecharse como basura general.',
-    
+
     // Recycling Advice
     cardboardAdvice: 'Aplana las cajas de cartón para ahorrar espacio. Retira cintas adhesivas y grapas. Deposita en el contenedor azul.',
     glassAdvice: 'Enjuaga el vidrio antes de reciclarlo. Retira tapas y corchos. Los espejos y cristales de ventanas NO van en el contenedor de vidrio.',
@@ -98,7 +99,7 @@ export const translations = {
     trashAdvice: 'Este material no es reciclable y debe ir al contenedor de basura general. Considera reducir el consumo de materiales no reciclables.',
     notRecyclableAdvice: 'Este material no es reciclable. Deposítalo en el contenedor de basura general. Intenta reducir el uso de productos similares.',
     defaultAdvice: 'Consulta las normas de reciclaje de tu localidad para más información.',
-    
+
     // Errors
     invalidFileFormat: 'Por favor, suelta una imagen válida (JPEG o PNG)',
     formatNotAllowed: 'Formato no permitido. Solo se aceptan archivos JPEG o PNG.',
@@ -106,7 +107,7 @@ export const translations = {
     cameraAccessError: 'No se pudo acceder a la cámara. Verifica los permisos.',
     cameraNotReady: 'La cámara aún no está lista. Espera un momento e intenta nuevamente.',
     unknownError: 'Error desconocido',
-    
+
     // Chat
     chatTitle: 'Chat sobre Reciclaje',
     chatPlaceholder: 'Pregunta sobre este material...',
@@ -117,7 +118,7 @@ export const translations = {
     chatWelcome: '¡Hola! Pregúntame sobre el material que identificaste.',
     askQuestion: 'Hacer una pregunta',
     closeChat: 'Cerrar chat',
-    
+
     // Map
     mapTitle: 'Puntos de Reciclaje',
     mapSubtitle: 'Encuentra lugares cercanos para reciclar tus residuos',
@@ -146,7 +147,7 @@ export const translations = {
     filterClothes: 'Ropa',
     filterGeneral: 'General',
     searchRadius: 'Radio de búsqueda',
-    
+
     // Material types for map
     typePlastic: 'Plástico',
     typeGlass: 'Vidrio',
@@ -161,7 +162,7 @@ export const translations = {
     typeTextile: 'Textil',
     typeOil: 'Aceite',
     typeMedicine: 'Medicamentos',
-    
+
     // Footer
     footerText: 'TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial',
     footerCopyright: 'Todos los derechos reservados.',
@@ -190,20 +191,33 @@ export const translations = {
     today: 'Hoy',
     yesterday: 'Ayer',
     daysAgo: 'días atrás',
-    day: 'día'
+    day: 'día',
+
+    scannerTitle: 'Escáner de Productos',
+    scannerSubtitle: 'Escanea el código de barras para conocer su reciclabilidad',
+    startScan: 'Iniciar Escaneo',
+    stopScan: 'Detener',
+    scanning: 'Escaneando...',
+    loading: 'Buscando información del producto...',
+    productNotFound: 'Producto no encontrado',
+    cameraError: 'Error al acceder a la cámara',
+    recyclingInfo: 'Información de Reciclaje',
+    scanAgain: 'Escanear Otro Producto',
+    recyclableBin: 'Contenedor'
   },
-  
+
   en: {
     // Header
     appTitle: 'TrashIA',
     appSubtitle: 'Intelligent Waste Classifier',
-    
+
     // Navigation
     navHome: 'Home',
     navClassifier: 'TrashIA',
     navMap: 'Map',
+    navScanner: 'Scanner',
     menuToggle: 'Menu',
-    
+
     // Home Page
     heroTitle: 'Recycle Smarter!',
     heroSubtitle: 'Use artificial intelligence to classify your waste',
@@ -240,25 +254,25 @@ export const translations = {
     contactSending: 'Sending...',
     contactSuccess: 'Message sent!',
     contactError: 'Error sending',
-    
+
     // Upload Section
     dragImageHere: 'Drag your image here',
     orClickToSelect: 'or click to select',
     fileRequirements: 'Only JPEG or PNG • Max 5MB',
     selectImage: 'Select Image',
     takePhoto: 'Take Photo',
-    
+
     // Camera Section
     cameraActive: 'Camera Active - Position the object',
     cameraInfo: 'Make sure the object is well-lit and in focus',
     capturePhoto: 'Capture Photo',
     cancel: 'Cancel',
-    
+
     // Analyze Section
     imageLoaded: 'Image loaded. Click the button to analyze it.',
     analyzeWaste: 'Analyze Waste',
     analyzing: 'Analyzing image... The first image may take up to 1 minute.',
-    
+
     // Results
     confidence: 'Confidence',
     recyclable: 'Recyclable',
@@ -266,7 +280,7 @@ export const translations = {
     materialInfo: 'Material information',
     recyclingTips: 'Recycling Tips',
     analyzeAnother: 'Analyze Another Waste',
-    
+
     // Material Classes
     cardboard: 'Cardboard',
     glass: 'Glass',
@@ -274,7 +288,7 @@ export const translations = {
     paper: 'Paper',
     plastic: 'Plastic',
     trash: 'General Waste',
-    
+
     // Material Messages
     cardboardMessage: 'Cardboard is recyclable as long as it is clean and dry.',
     glassMessage: 'Glass is 100% recyclable and can be recycled infinitely.',
@@ -282,7 +296,7 @@ export const translations = {
     paperMessage: 'Paper is recyclable as long as it is not too dirty.',
     plasticMessage: 'Plastic is recyclable, but make sure to clean it first.',
     trashMessage: 'This material is not recyclable and should be disposed of as general waste.',
-    
+
     // Recycling Advice
     cardboardAdvice: 'Flatten cardboard boxes to save space. Remove adhesive tapes and staples. Place in the blue recycling bin.',
     glassAdvice: 'Rinse glass before recycling. Remove caps and corks. Mirrors and window glass do NOT go in the glass recycling bin.',
@@ -292,7 +306,7 @@ export const translations = {
     trashAdvice: 'This material is not recyclable and should go in the general waste bin. Consider reducing consumption of non-recyclable materials.',
     notRecyclableAdvice: 'This material is not recyclable. Place it in the general waste bin. Try to reduce the use of similar products.',
     defaultAdvice: 'Check your local recycling regulations for more information.',
-    
+
     // Errors
     invalidFileFormat: 'Please drop a valid image (JPEG or PNG)',
     formatNotAllowed: 'Format not allowed. Only JPEG or PNG files are accepted.',
@@ -300,7 +314,7 @@ export const translations = {
     cameraAccessError: 'Could not access camera. Check permissions.',
     cameraNotReady: 'Camera is not ready yet. Wait a moment and try again.',
     unknownError: 'Unknown error',
-    
+
     // Chat
     chatTitle: 'Recycling Chat',
     chatPlaceholder: 'Ask about this material...',
@@ -311,7 +325,7 @@ export const translations = {
     chatWelcome: 'Hello! Ask me about the material you identified.',
     askQuestion: 'Ask a question',
     closeChat: 'Close chat',
-    
+
     // Map
     mapTitle: 'Recycling Points',
     mapSubtitle: 'Find nearby places to recycle your waste',
@@ -340,7 +354,7 @@ export const translations = {
     filterClothes: 'Clothes',
     filterGeneral: 'General',
     searchRadius: 'Search radius',
-    
+
     // Material types for map
     typePlastic: 'Plastic',
     typeGlass: 'Glass',
@@ -355,7 +369,7 @@ export const translations = {
     typeTextile: 'Textile',
     typeOil: 'Oil',
     typeMedicine: 'Medicine',
-    
+
     // Footer
     footerText: 'TrashIA - Helping to classify waste with Artificial Intelligence',
     footerCopyright: 'All rights reserved.',
@@ -384,7 +398,19 @@ export const translations = {
     today: 'Today',
     yesterday: 'Yesterday',
     daysAgo: 'days ago',
-    day: 'day'
+    day: 'day',
+
+    scannerTitle: 'Product Scanner',
+    scannerSubtitle: 'Scan a barcode to check recyclability',
+    startScan: 'Start Scanning',
+    stopScan: 'Stop',
+    scanning: 'Scanning...',
+    loading: 'Searching product information...',
+    productNotFound: 'Product not found',
+    cameraError: 'Error accessing camera',
+    recyclingInfo: 'Recycling Information',
+    scanAgain: 'Scan Another Product',
+    recyclableBin: 'Bin'
   }
 } as const;
 

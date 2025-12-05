@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-  faRecycle, 
-  faLanguage, 
-  faBars, 
+import {
+  faRecycle,
+  faLanguage,
+  faBars,
   faTimes,
   faCamera,
   faMapLocationDot,
   faHome,
-  faChartBar
+  faChartBar,
+  faBarcode
 } from '@fortawesome/free-solid-svg-icons'
 import type { Language } from '../../../translations'
 
@@ -23,6 +24,7 @@ interface HeaderProps {
     navClassifier: string
     navMap: string
     navStats: string
+    navScanner: string
     menuToggle: string
   }
 }
@@ -52,33 +54,40 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav className="nav-desktop">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className={`nav-link ${isActive('/') ? 'active' : ''}`}
           >
             <FontAwesomeIcon icon={faHome} />
             <span>{t.navHome}</span>
           </Link>
-          <Link 
-            to="/trashia" 
+          <Link
+            to="/trashia"
             className={`nav-link ${isActive('/trashia') ? 'active' : ''}`}
           >
             <FontAwesomeIcon icon={faCamera} />
             <span>{t.navClassifier}</span>
           </Link>
-          <Link 
-            to="/map" 
+          <Link
+            to="/map"
             className={`nav-link ${isActive('/map') ? 'active' : ''}`}
           >
             <FontAwesomeIcon icon={faMapLocationDot} />
             <span>{t.navMap}</span>
           </Link>
-          <Link 
-            to="/stats" 
+          <Link
+            to="/stats"
             className={`nav-link ${isActive('/stats') ? 'active' : ''}`}
           >
             <FontAwesomeIcon icon={faChartBar} />
             <span>{t.navStats}</span>
+          </Link>
+          <Link
+            to="/scanner"
+            className={`nav-link ${isActive('/scanner') ? 'active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faBarcode} />
+            <span>{t.navScanner}</span>
           </Link>
         </nav>
 
@@ -90,8 +99,8 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
           </button>
 
           {/* Mobile menu button */}
-          <button 
-            className="menu-toggle" 
+          <button
+            className="menu-toggle"
             onClick={toggleMenu}
             aria-label={t.menuToggle}
           >
@@ -102,37 +111,45 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
 
       {/* Mobile Navigation */}
       <nav className={`nav-mobile ${menuOpen ? 'open' : ''}`}>
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className={`nav-mobile-link ${isActive('/') ? 'active' : ''}`}
           onClick={closeMenu}
         >
           <FontAwesomeIcon icon={faHome} />
           <span>{t.navHome}</span>
         </Link>
-        <Link 
-          to="/trashia" 
+        <Link
+          to="/trashia"
           className={`nav-mobile-link ${isActive('/trashia') ? 'active' : ''}`}
           onClick={closeMenu}
         >
           <FontAwesomeIcon icon={faCamera} />
           <span>{t.navClassifier}</span>
         </Link>
-        <Link 
-          to="/map" 
+        <Link
+          to="/map"
           className={`nav-mobile-link ${isActive('/map') ? 'active' : ''}`}
           onClick={closeMenu}
         >
           <FontAwesomeIcon icon={faMapLocationDot} />
           <span>{t.navMap}</span>
         </Link>
-        <Link 
-          to="/stats" 
+        <Link
+          to="/stats"
           className={`nav-mobile-link ${isActive('/stats') ? 'active' : ''}`}
           onClick={closeMenu}
         >
           <FontAwesomeIcon icon={faChartBar} />
           <span>{t.navStats}</span>
+        </Link>
+        <Link
+          to="/scanner"
+          className={`nav-mobile-link ${isActive('/scanner') ? 'active' : ''}`}
+          onClick={closeMenu}
+        >
+          <FontAwesomeIcon icon={faBarcode} />
+          <span>{t.navScanner}</span>
         </Link>
       </nav>
 

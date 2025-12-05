@@ -1,0 +1,169 @@
+.product-result {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 40px rgba(46, 125, 50, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-header {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #f5f5f5;
+    flex-shrink: 0;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info h2 {
+    color: #2e7d32;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.product-brand {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-barcode {
+    color: #999;
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+
+.recycling-section {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1.5rem;
+}
+
+.recycling-section h3 {
+    color: #2e7d32;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recycling-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.recycling-item {
+    background: #f9fbe7;
+    border-radius: 12px;
+    padding: 1rem;
+    border-left: 4px solid #8bc34a;
+}
+
+.recycling-item.unknown {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+.recycling-material {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.material-name {
+    font-weight: 600;
+    color: #33691e;
+    text-transform: capitalize;
+}
+
+.bin-badge {
+    background: #8bc34a;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.bin-badge.amarillo {
+    background: #ffc107;
+    color: #333;
+}
+
+.bin-badge.verde {
+    background: #4caf50;
+}
+
+.bin-badge.azul {
+    background: #2196f3;
+}
+
+.recycling-tip {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.btn-scan-again {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #689f38 0%, #558b2f 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(104, 159, 56, 0.3);
+}
+
+.btn-scan-again:hover {
+    background: linear-gradient(135deg, #558b2f 0%, #33691e 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(104, 159, 56, 0.4);
+}
+
+@media (max-width: 768px) {
+    .product-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-image {
+        width: 150px;
+        height: 150px;
+    }
+}
