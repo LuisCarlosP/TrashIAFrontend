@@ -44,12 +44,12 @@ export default function ProductResult({ product, onScanAgain, translations }: Pr
                         {product.recycling_info.map((info, index) => (
                             <div
                                 key={index}
-                                className={`recycling-item ${info.material === 'unknown' ? 'unknown' : ''}`}
+                                className={`recycling-item ${(!info.bin || info.recyclable === null) ? 'unknown' : ''}`}
                             >
                                 <div className="recycling-material">
                                     <span className="material-name">{info.material}</span>
                                     {info.bin && (
-                                        <span className={`bin-badge ${info.bin}`}>
+                                        <span className="bin-badge">
                                             {translations.recyclableBin} {info.bin}
                                         </span>
                                     )}
