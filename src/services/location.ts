@@ -32,6 +32,7 @@ export interface RecyclingPointsResponse {
 
 // API URL from environment
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_KEY = import.meta.env.VITE_API_KEY || '';
 
 // Get user's current location with high precision
 export const getCurrentPosition = (): Promise<Coordinates> => {
@@ -153,7 +154,11 @@ export const fetchRecyclingPoints = async (
     params.append('types', types.join(','));
   }
 
-  const response = await fetch(`${API_URL}/location/recycling-points?${params}`);
+  const response = await fetch(`${API_URL}/location/recycling-points?${params}`, {
+    headers: {
+      'X-API-Key': API_KEY,
+    },
+  });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -162,14 +167,13 @@ export const fetchRecyclingPoints = async (
 
   const data: RecyclingPointsResponse = await response.json();
 
-  // Map backend response to frontend format (convert snake_case to camelCase)
+
   return data.points.map(point => ({
     ...point,
     openingHours: point.openingHours || (point as any).opening_hours,
   }));
 };
 
-// Get Font Awesome icon class for material type
 export const getMaterialIcon = (type: string): string => {
   const icons: Record<string, string> = {
     plastic: 'fa-bottle-water',
@@ -185,7 +189,6 @@ export const getMaterialIcon = (type: string): string => {
   return icons[type] || 'fa-recycle';
 };
 
-// Get color for material type (for map markers)
 export const getMaterialColor = (type: string): string => {
   const colors: Record<string, string> = {
     plastic: '#FFC107',

@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_KEY = import.meta.env.VITE_API_KEY || '';
 
 export interface PredictionResponse {
   clase: string;
@@ -61,6 +62,9 @@ export const predictImage = async (file: File): Promise<PredictionResponse> => {
 
   const response = await fetch(`${API_URL}/predict`, {
     method: 'POST',
+    headers: {
+      'X-API-Key': API_KEY,
+    },
     body: formData,
   });
 
@@ -83,6 +87,7 @@ export const createChatSession = async (request: CreateSessionRequest): Promise<
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-API-Key': API_KEY,
     },
     body: JSON.stringify(request),
   });
@@ -100,6 +105,7 @@ export const sendChatMessage = async (request: SendMessageRequest): Promise<Chat
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-API-Key': API_KEY,
     },
     body: JSON.stringify(request),
   });
@@ -113,7 +119,11 @@ export const sendChatMessage = async (request: SendMessageRequest): Promise<Chat
 };
 
 export const getChatHistory = async (sessionId: string): Promise<ChatHistoryResponse> => {
-  const response = await fetch(`${API_URL}/chat/history/${sessionId}`);
+  const response = await fetch(`${API_URL}/chat/history/${sessionId}`, {
+    headers: {
+      'X-API-Key': API_KEY,
+    },
+  });
 
   if (!response.ok) {
     const errorData = await response.json();
@@ -126,6 +136,9 @@ export const getChatHistory = async (sessionId: string): Promise<ChatHistoryResp
 export const deleteChatSession = async (sessionId: string): Promise<void> => {
   const response = await fetch(`${API_URL}/chat/session/${sessionId}`, {
     method: 'DELETE',
+    headers: {
+      'X-API-Key': API_KEY,
+    },
   });
 
   if (!response.ok) {
@@ -139,6 +152,7 @@ export const updateMaterialContext = async (request: UpdateMaterialRequest): Pro
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'X-API-Key': API_KEY,
     },
     body: JSON.stringify(request),
   });

@@ -18,11 +18,16 @@ export interface ProductInfo {
 }
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_KEY = import.meta.env.VITE_API_KEY || '';
 
 export const fetchProductByBarcode = async (
     barcode: string
 ): Promise<ProductInfo> => {
-    const response = await fetch(`${API_URL}/barcode/${barcode}`);
+    const response = await fetch(`${API_URL}/barcode/${barcode}`, {
+        headers: {
+            'X-API-Key': API_KEY,
+        },
+    });
 
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
