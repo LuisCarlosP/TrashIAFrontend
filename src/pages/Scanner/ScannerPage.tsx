@@ -23,11 +23,21 @@ interface ScannerPageProps {
         recyclingInfo: string
         scanAgain: string
         recyclableBin: string
+        recyclableMaterial: string
+        unknownMaterial: string
+        yellowBin: string
+        greenBin: string
+        blueBin: string
+        unknownBin: string
+        yellowTip: string
+        greenTip: string
+        blueTip: string
+        unknownTip: string
     }
     lang: string
 }
 
-export default function ScannerPage({ t, lang }: ScannerPageProps) {
+export default function ScannerPage({ t }: ScannerPageProps) {
     const [isScanning, setIsScanning] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -39,14 +49,14 @@ export default function ScannerPage({ t, lang }: ScannerPageProps) {
         setError(null)
 
         try {
-            const productData = await fetchProductByBarcode(code, lang)
+            const productData = await fetchProductByBarcode(code)
             setProduct(productData)
         } catch (err) {
             setError(err instanceof Error ? err.message : t.productNotFound)
         } finally {
             setIsLoading(false)
         }
-    }, [lang, t.productNotFound])
+    }, [t.productNotFound])
 
     const handleError = useCallback((errorMessage: string) => {
         setIsScanning(false)
@@ -116,11 +126,7 @@ export default function ScannerPage({ t, lang }: ScannerPageProps) {
                     <ProductResult
                         product={product}
                         onScanAgain={handleScanAgain}
-                        translations={{
-                            recyclingInfo: t.recyclingInfo,
-                            scanAgain: t.scanAgain,
-                            recyclableBin: t.recyclableBin
-                        }}
+                        translations={t}
                     />
                 )}
             </div>

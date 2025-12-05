@@ -10,10 +10,50 @@ interface ProductResultProps {
         recyclingInfo: string
         scanAgain: string
         recyclableBin: string
+        recyclableMaterial: string
+        unknownMaterial: string
+        yellowBin: string
+        greenBin: string
+        blueBin: string
+        unknownBin: string
+        yellowTip: string
+        greenTip: string
+        blueTip: string
+        unknownTip: string
     }
 }
 
 export default function ProductResult({ product, onScanAgain, translations }: ProductResultProps) {
+    const getBinText = (info: { bin: string | null, bin_type?: string }) => {
+        if (info.bin_type) {
+            switch (info.bin_type) {
+                case 'yellow': return translations.yellowBin;
+                case 'green': return translations.greenBin;
+                case 'blue': return translations.blueBin;
+                case 'unknown': return translations.unknownBin;
+            }
+        }
+        return info.bin;
+    }
+
+    const getTipText = (info: { tip: string, bin_type?: string }) => {
+        if (info.bin_type) {
+            switch (info.bin_type) {
+                case 'yellow': return translations.yellowTip;
+                case 'green': return translations.greenTip;
+                case 'blue': return translations.blueTip;
+                case 'unknown': return translations.unknownTip;
+            }
+        }
+        return info.tip;
+    }
+
+    const getMaterialText = (material: string) => {
+        if (material === 'Recyclable Material') return translations.recyclableMaterial;
+        if (material === 'Unknown') return translations.unknownMaterial;
+        return material;
+    }
+
     return (
         <div className="product-result">
             <div className="product-header">
@@ -41,22 +81,28 @@ export default function ProductResult({ product, onScanAgain, translations }: Pr
                         {translations.recyclingInfo}
                     </h3>
                     <div className="recycling-items">
-                        {product.recycling_info.map((info, index) => (
-                            <div
-                                key={index}
-                                className={`recycling-item ${(!info.bin || info.recyclable === null) ? 'unknown' : ''}`}
-                            >
-                                <div className="recycling-material">
-                                    <span className="material-name">{info.material}</span>
-                                    {info.bin && (
-                                        <span className="bin-badge">
-                                            {translations.recyclableBin} {info.bin}
-                                        </span>
-                                    )}
+                        {product.recycling_info.map((info, index) => {
+                            const binText = getBinText(info);
+                            const tipText = getTipText(info);
+                            const materialText = getMaterialText(info.material);
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`recycling-item ${(!info.bin || info.recyclable === null) ? 'unknown' : ''}`}
+                                >
+                                    <div className="recycling-material">
+                                        <span className="material-name">{materialText}</span>
+                                        {binText && (
+                                            <span className="bin-badge">
+                                                {binText}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="recycling-tip">{tipText}</p>
                                 </div>
-                                <p className="recycling-tip">{info.tip}</p>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </div>
             )}

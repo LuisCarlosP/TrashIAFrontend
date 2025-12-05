@@ -203,7 +203,19 @@ export const translations = {
     cameraError: 'Error al acceder a la cámara',
     recyclingInfo: 'Información de Reciclaje',
     scanAgain: 'Escanear Otro Producto',
-    recyclableBin: 'Contenedor'
+    recyclableBin: 'Contenedor',
+
+    // Bin Types & Tips
+    recyclableMaterial: 'Material Reciclable',
+    unknownMaterial: 'Desconocido',
+    yellowBin: 'Amarillo',
+    greenBin: 'Verde',
+    blueBin: 'Azul',
+    unknownBin: 'Consultar Empaque',
+    yellowTip: 'Limpia/Enjuaga el envase. Plásticos, latas y briks.',
+    greenTip: 'Retira tapas y corchos. Solo vidrio.',
+    blueTip: 'Aplana para ahorrar espacio. Papel y cartón.',
+    unknownTip: 'No detectamos el material automáticamente. Revisa el empaque.',
   },
 
   en: {
@@ -410,7 +422,19 @@ export const translations = {
     cameraError: 'Error accessing camera',
     recyclingInfo: 'Recycling Information',
     scanAgain: 'Scan Another Product',
-    recyclableBin: 'Bin'
+    recyclableBin: 'Bin',
+
+    // Bin Types & Tips
+    recyclableMaterial: 'Recyclable Material',
+    unknownMaterial: 'Unknown',
+    yellowBin: 'Yellow',
+    greenBin: 'Green',
+    blueBin: 'Blue',
+    unknownBin: 'Check Packaging',
+    yellowTip: 'Clean/Rinse the container. Plastics, cans and briks.',
+    greenTip: 'Remove caps and corks. Glass only.',
+    blueTip: 'Flatten to save space. Paper and cardboard.',
+    unknownTip: 'Material not detected automatically. Check the packaging.',
   }
 } as const;
 

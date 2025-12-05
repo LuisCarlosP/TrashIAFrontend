@@ -3,6 +3,7 @@ export interface RecyclingInfo {
     recyclable: boolean | null;
     bin: string | null;
     tip: string;
+    bin_type?: string;
 }
 
 export interface ProductInfo {
@@ -19,10 +20,9 @@ export interface ProductInfo {
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const fetchProductByBarcode = async (
-    barcode: string,
-    lang: string = 'es'
+    barcode: string
 ): Promise<ProductInfo> => {
-    const response = await fetch(`${API_URL}/barcode/${barcode}?lang=${lang}`);
+    const response = await fetch(`${API_URL}/barcode/${barcode}`);
 
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
