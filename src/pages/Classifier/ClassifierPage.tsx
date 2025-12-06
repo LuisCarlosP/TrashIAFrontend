@@ -171,15 +171,15 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
     setPrediction(null);
 
     try {
-      const result = await predictImage(imageFile);
+      const result = await predictImage(imageFile, language);
       setPrediction(result);
       setLoading(false);
 
       // Guardar en historial
       await saveClassification(
-        result.clase,
-        result.confianza,
-        result.es_reciclable,
+        result.class,
+        result.confidence,
+        result.is_recyclable,
         imageFile
       );
 
@@ -193,9 +193,9 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   const initializeChatSession = async (predictionData: PredictionResponse) => {
     try {
       const session = await createChatSession({
-        material_type: predictionData.clase,
-        is_recyclable: predictionData.es_reciclable,
-        material_info: predictionData.mensaje,
+        material_type: predictionData.class,
+        is_recyclable: predictionData.is_recyclable,
+        material_info: predictionData.message,
         language: language
       });
 
@@ -205,7 +205,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
         content: session.message
       }]);
     } catch (err) {
-      console.error('Error al crear sesión de chat:', err);
+      console.error('Error creating chat session:', err);
     }
   };
 
@@ -214,9 +214,9 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
       setChatLoading(true);
       try {
         const session = await createChatSession({
-          material_type: prediction.clase,
-          is_recyclable: prediction.es_reciclable,
-          material_info: prediction.mensaje,
+          material_type: prediction.class,
+          is_recyclable: prediction.is_recyclable,
+          material_info: prediction.message,
           language: language
         });
 
@@ -226,7 +226,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
           content: session.message
         }]);
       } catch (err) {
-        console.error('Error al crear sesión de chat:', err);
+        console.error('Error creating chat session:', err);
       } finally {
         setChatLoading(false);
       }

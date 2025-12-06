@@ -2,16 +2,16 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const API_KEY = import.meta.env.VITE_API_KEY || '';
 
 export interface PredictionResponse {
-  clase: string;
-  confianza: number;
-  es_reciclable: boolean;
-  mensaje: string;
+  class: string;
+  confidence: number;
+  is_recyclable: boolean;
+  message: string;
 }
 
 export interface ErrorResponse {
   error: boolean;
-  mensaje: string;
-  codigo: number;
+  message: string;
+  code: number;
 }
 
 // Chat Interfaces
@@ -56,11 +56,11 @@ export interface UpdateMaterialRequest {
 }
 
 // Prediction API
-export const predictImage = async (file: File): Promise<PredictionResponse> => {
+export const predictImage = async (file: File, language: string = 'en'): Promise<PredictionResponse> => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const response = await fetch(`${API_URL}/predict`, {
+  const response = await fetch(`${API_URL}/predict?language=${language}`, {
     method: 'POST',
     headers: {
       'X-API-Key': API_KEY,
@@ -70,7 +70,7 @@ export const predictImage = async (file: File): Promise<PredictionResponse> => {
 
   if (!response.ok) {
     const errorData: ErrorResponse = await response.json();
-    throw new Error(errorData.mensaje || 'Error al clasificar la imagen');
+    throw new Error(errorData.message || 'Error classifying image');
   }
 
   return response.json();

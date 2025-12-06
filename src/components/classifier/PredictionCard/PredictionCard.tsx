@@ -25,35 +25,35 @@ export default function PredictionCard({
   translations: t
 }: PredictionCardProps) {
   return (
-    <div className={`prediction-card ${prediction.es_reciclable ? 'recyclable' : 'non-recyclable'}`}>
+    <div className={`prediction-card ${prediction.is_recyclable ? 'recyclable' : 'non-recyclable'}`}>
       <div className="prediction-header">
         <FontAwesomeIcon 
-          icon={prediction.es_reciclable ? faRecycle : faCircleXmark} 
+          icon={prediction.is_recyclable ? faRecycle : faCircleXmark} 
           className="prediction-icon"
         />
-        <h2>{getClassName(prediction.clase)}</h2>
+        <h2>{getClassName(prediction.class)}</h2>
       </div>
       
       <div className="confidence">
         <span>{t.confidence}: </span>
-        <strong>{(prediction.confianza * 100).toFixed(1)}%</strong>
+        <strong>{(prediction.confidence * 100).toFixed(1)}%</strong>
       </div>
 
       <div className="confidence-bar">
         <div 
           className="confidence-fill" 
-          style={{ width: `${prediction.confianza * 100}%` }}
+          style={{ width: `${prediction.confidence * 100}%` }}
         ></div>
       </div>
 
-      <div className={`recyclable-badge ${prediction.es_reciclable ? 'yes' : 'no'}`}>
-        <FontAwesomeIcon icon={prediction.es_reciclable ? faCircleCheck : faCircleXmark} />
-        {prediction.es_reciclable ? t.recyclable : t.notRecyclable}
+      <div className={`recyclable-badge ${prediction.is_recyclable ? 'yes' : 'no'}`}>
+        <FontAwesomeIcon icon={prediction.is_recyclable ? faCircleCheck : faCircleXmark} />
+        {prediction.is_recyclable ? t.recyclable : t.notRecyclable}
       </div>
 
       <div className="info-message">
         <h3>{t.materialInfo}</h3>
-        <p>{getMaterialMessage(prediction.clase)}</p>
+        <p>{prediction.message || getMaterialMessage(prediction.class)}</p>
       </div>
 
       <div className="advice-section">
@@ -61,7 +61,7 @@ export default function PredictionCard({
           <FontAwesomeIcon icon={faRecycle} />
           {t.recyclingTips}
         </h3>
-        <p>{getRecyclingAdvice(prediction.clase, prediction.es_reciclable)}</p>
+        <p>{getRecyclingAdvice(prediction.class, prediction.is_recyclable)}</p>
       </div>
     </div>
   )

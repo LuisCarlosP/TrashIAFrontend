@@ -34,6 +34,7 @@ npm run build
 ## Environment Variables
 
 For local development, create a `.env.local` file:
+For local development, create a `.env.local` file in the root directory:
 
 ```env
 VITE_API_URL=http://localhost:8000
