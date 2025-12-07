@@ -2,12 +2,12 @@ import { useState, useCallback } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faBarcode,
-    faSpinner,
     faStop,
     faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons'
 import { BarcodeScanner, ProductResult } from '../../components/scanner'
 import { fetchProductByBarcode, type ProductInfo } from '../../services/barcode'
+import { Loading } from '../../components'
 import './ScannerPage.css'
 
 interface ScannerPageProps {
@@ -107,9 +107,8 @@ export default function ScannerPage({ t }: ScannerPageProps) {
                         </div>
 
                         {isLoading && (
-                            <div className="scanner-loading">
-                                <FontAwesomeIcon icon={faSpinner} spin className="spinner" />
-                                <p>{t.loading}</p>
+                            <div className="scanner-loading-wrapper">
+                                <Loading message={t.loading} />
                             </div>
                         )}
 

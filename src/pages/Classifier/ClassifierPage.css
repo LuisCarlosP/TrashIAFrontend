@@ -7,6 +7,9 @@
 
 .classifier-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -17,6 +20,31 @@
 .classifier-page .results-section {
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Full height loading state */
+.classifier-page .results-section.loading-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.classifier-page .loading-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.classifier-page .loading-container .loading {
+  max-width: 400px;
+  width: 100%;
 }
 
 .classifier-page .image-preview {

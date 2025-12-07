@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-le
 import L from 'leaflet'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faSpinner,
   faExclamationTriangle,
   faBottleWater,
   faWineBottle,
@@ -25,6 +24,7 @@ import {
   type RecyclingPoint
 } from '../../services/location'
 import { MapHeader, MapControls, MapFilters, PointPopup } from '../../components/map'
+import { Loading } from '../../components'
 import 'leaflet/dist/leaflet.css'
 import './RecyclingMap.css'
 
@@ -259,9 +259,8 @@ export default function RecyclingMap({ t }: RecyclingMapProps) {
   if (loading) {
     return (
       <div className="map-page">
-        <div className="map-loading">
-          <FontAwesomeIcon icon={faSpinner} spin className="loading-icon" />
-          <p>{t.loadingLocation}</p>
+        <div className="map-loading-wrapper">
+          <Loading message={t.loadingLocation} />
         </div>
       </div>
     )

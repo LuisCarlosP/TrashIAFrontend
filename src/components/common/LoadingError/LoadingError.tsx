@@ -7,10 +7,21 @@ interface LoadingProps {
 }
 
 export function Loading({ message }: LoadingProps) {
+  // Split message into main text and subtext if it contains "..."
+  const parts = message.split('...');
+  const mainText = parts[0] + '...';
+  const subText = parts[1]?.trim() || '';
+
   return (
     <div className="loading">
-      <FontAwesomeIcon icon={faSpinner} className="spinner" spin />
-      <p>{message}</p>
+      <div className="loading-content">
+        <div className="spinner-container">
+          <FontAwesomeIcon icon={faSpinner} className="spinner" spin />
+        </div>
+        <p className="loading-text">{mainText}</p>
+        {subText && <p className="loading-subtext">{subText}</p>}
+        <div className="loading-progress"></div>
+      </div>
     </div>
   )
 }

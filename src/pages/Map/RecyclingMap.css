@@ -22,7 +22,7 @@
   z-index: 1;
 }
 
-.map-loading,
+.map-loading-wrapper,
 .map-error {
   flex: 1;
   display: flex;
@@ -34,9 +34,9 @@
   text-align: center;
 }
 
-.loading-icon {
-  font-size: 3rem;
-  color: #2e7d32;
+.map-loading-wrapper .loading {
+  max-width: 350px;
+  width: 100%;
 }
 
 .error-icon {

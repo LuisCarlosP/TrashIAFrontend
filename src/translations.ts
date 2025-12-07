@@ -216,6 +216,13 @@ export const translations = {
     greenTip: 'Retira tapas y corchos. Solo vidrio.',
     blueTip: 'Aplana para ahorrar espacio. Papel y cartón.',
     unknownTip: 'No detectamos el material automáticamente. Revisa el empaque.',
+
+    // 404 Page
+    notFoundTitle: '¡Ups! Página no encontrada',
+    notFoundSubtitle: 'Error 404',
+    notFoundDescription: 'Parece que esta página se fue al contenedor equivocado. No te preocupes, ¡te ayudamos a reciclar tu navegación!',
+    notFoundButton: 'Volver al Inicio',
+    notFoundTip: '¿Sabías que reciclar una botella de plástico ahorra suficiente energía para encender una bombilla durante 3 horas?',
   },
 
   en: {
@@ -435,6 +442,13 @@ export const translations = {
     greenTip: 'Remove caps and corks. Glass only.',
     blueTip: 'Flatten to save space. Paper and cardboard.',
     unknownTip: 'Material not detected automatically. Check the packaging.',
+
+    // 404 Page
+    notFoundTitle: 'Oops! Page not found',
+    notFoundSubtitle: 'Error 404',
+    notFoundDescription: 'It seems this page ended up in the wrong bin. Don\'t worry, let us help you recycle your navigation!',
+    notFoundButton: 'Back to Home',
+    notFoundTip: 'Did you know that recycling one plastic bottle saves enough energy to power a light bulb for 3 hours?',
   }
 } as const;
 

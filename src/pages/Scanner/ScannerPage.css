@@ -76,19 +76,14 @@
     box-shadow: 0 6px 16px rgba(211, 47, 47, 0.4);
 }
 
-.scanner-loading {
+.scanner-loading-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 2rem;
-    gap: 1rem;
-    color: #2e7d32;
     margin-top: 1rem;
 }
 
-.scanner-loading .spinner {
-    font-size: 2.5rem;
+.scanner-loading-wrapper .loading {
+    max-width: 100%;
 }
 
 .scanner-error {

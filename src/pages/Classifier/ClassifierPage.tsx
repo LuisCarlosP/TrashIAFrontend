@@ -1,8 +1,8 @@
 import { useState, useRef, type DragEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecycle, faRotateRight } from '@fortawesome/free-solid-svg-icons';
-import { 
-  predictImage, 
+import {
+  predictImage,
   type PredictionResponse,
   createChatSession,
   sendChatMessage,
@@ -417,13 +417,20 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
           />
         )}
 
-        {selectedImage && (
+        {/* Loading state - full page centered like map */}
+        {selectedImage && loading && !prediction && (
+          <div className="loading-container">
+            <Loading message={t.analyzing} />
+          </div>
+        )}
+
+        {selectedImage && !loading && (
           <div className="results-section">
             <div className="image-preview">
               <img src={selectedImage} alt="Imagen seleccionada" />
             </div>
 
-            {!loading && !prediction && (
+            {!prediction && (
               <div className="analyze-section">
                 <p className="analyze-instruction">{t.imageLoaded}</p>
                 <button className="btn btn-analyze" onClick={analyzeImage}>
@@ -432,8 +439,6 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
                 </button>
               </div>
             )}
-
-            {loading && <Loading message={t.analyzing} />}
 
             {error && <ErrorMessage message={error} />}
 
