@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { translations, type Language } from './translations'
@@ -12,7 +12,14 @@ const ScannerPage = lazy(() => import('./pages/Scanner/ScannerPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFound/NotFoundPage'))
 
 function App() {
-  const [language, setLanguage] = useState<Language>('es')
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('language')
+    return (saved === 'es' || saved === 'en') ? saved : 'es'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('language', language)
+  }, [language])
   const t = translations[language]
 
   const toggleLanguage = () => {
