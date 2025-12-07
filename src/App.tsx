@@ -9,6 +9,7 @@ const ClassifierPage = lazy(() => import('./pages/Classifier/ClassifierPage'))
 const RecyclingMap = lazy(() => import('./pages/Map/RecyclingMap'))
 const StatsPage = lazy(() => import('./pages/Stats/StatsPage'))
 const ScannerPage = lazy(() => import('./pages/Scanner/ScannerPage'))
+const TermsPage = lazy(() => import('./pages/Terms/TermsPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFound/NotFoundPage'))
 
 function App() {
@@ -50,14 +51,16 @@ function App() {
             <Route path="/map" element={<RecyclingMap t={t} />} />
             <Route path="/stats" element={<StatsPage language={language} t={t} />} />
             <Route path="/scanner" element={<ScannerPage t={t} lang={language} />} />
+            <Route path="/terms" element={<TermsPage t={t} />} />
             <Route path="*" element={<NotFoundPage t={t} />} />
           </Routes>
         </Suspense>
 
-        <Footer copyrightText={t.footerCopyright} />
+        <Footer copyrightText={t.footerCopyright} termsLink={t.termsLink} />
       </div>
     </Router>
   )
 }
 
 export default App
+

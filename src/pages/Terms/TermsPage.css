@@ -1,0 +1,129 @@
+.terms-page {
+    min-height: calc(100vh - 140px);
+    background: linear-gradient(135deg, #f0f4f3 0%, #e1ebe9 100%);
+    padding: 3rem 1.5rem;
+}
+
+.terms-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 24px;
+    border: 1px solid rgba(46, 125, 50, 0.15);
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(46, 125, 50, 0.15);
+}
+
+.terms-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(46, 125, 50, 0.15);
+}
+
+.terms-header h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 0.75rem;
+}
+
+.terms-updated {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.terms-intro {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(46, 125, 50, 0.15);
+}
+
+.terms-intro p {
+    color: #2d3748;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.terms-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.terms-section {
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 16px;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+    transition: all 0.3s ease;
+}
+
+.terms-section:hover {
+    border-color: rgba(46, 125, 50, 0.3);
+    background: #f0f4f3;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+}
+
+.terms-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1b5e20;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terms-section h2::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(180deg, #2e7d32 0%, #43a047 100%);
+    border-radius: 2px;
+}
+
+.terms-section p {
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .terms-page {
+        padding: 2rem 1rem;
+    }
+
+    .terms-container {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+    }
+
+    .terms-section {
+        padding: 1.25rem;
+    }
+
+    .terms-section h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-container {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+
+    .terms-intro {
+        padding: 1rem;
+    }
+
+    .terms-section {
+        padding: 1rem;
+    }
+}

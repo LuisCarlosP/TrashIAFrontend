@@ -5,9 +5,25 @@
   text-align: center;
   padding: 1.5rem;
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .footer p {
   margin: 0;
   opacity: 0.9;
+}
+
+.footer-terms-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.footer-terms-link:hover {
+  color: white;
+  text-decoration: underline;
 }
