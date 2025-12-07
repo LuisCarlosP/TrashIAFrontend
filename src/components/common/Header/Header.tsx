@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faRecycle,
   faLanguage,
   faBars,
   faTimes,
@@ -14,6 +13,7 @@ import {
   faBarcode
 } from '@fortawesome/free-solid-svg-icons'
 import type { Language } from '../../../translations'
+import trashiaIconWhite from '../../../assets/trashia-icon-white.svg'
 
 interface HeaderProps {
   language: Language
@@ -48,7 +48,7 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
       <div className="header-container">
         {/* Logo */}
         <Link to="/" className="header-logo" onClick={closeMenu}>
-          <FontAwesomeIcon icon={faRecycle} className="logo-icon" />
+          <img src={trashiaIconWhite} alt="TrashIA Logo" className="logo-icon-svg" />
           <span className="logo-text">{t.appTitle}</span>
         </Link>
 

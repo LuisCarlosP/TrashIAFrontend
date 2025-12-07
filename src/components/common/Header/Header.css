@@ -36,6 +36,12 @@
   font-size: 2rem;
 }
 
+.logo-icon-svg {
+  width: 40px;
+  height: auto;
+  max-width: 40px;
+}
+
 .logo-text {
   font-size: 1.75rem;
   font-weight: 700;
@@ -200,6 +206,10 @@
     font-size: 1.5rem;
   }
 
+  .logo-icon-svg {
+    width: 32px;
+  }
+
   .logo-text {
     font-size: 1.4rem;
   }
@@ -243,5 +253,9 @@
 
   .logo-icon {
     font-size: 1.3rem;
+  }
+
+  .logo-icon-svg {
+    width: 28px;
   }
 }
