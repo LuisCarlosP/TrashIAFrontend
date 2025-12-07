@@ -425,12 +425,14 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
         )}
 
         {selectedImage && !loading && (
-          <div className="results-section">
-            <div className="image-preview">
-              <img src={selectedImage} alt="Imagen seleccionada" />
-            </div>
+          <div className={`results-section ${showChat ? 'chat-active' : ''}`}>
+            {!showChat && (
+              <div className="image-preview">
+                <img src={selectedImage} alt="Imagen seleccionada" />
+              </div>
+            )}
 
-            {!prediction && (
+            {!prediction && !showChat && (
               <div className="analyze-section">
                 <p className="analyze-instruction">{t.imageLoaded}</p>
                 <button className="btn btn-analyze" onClick={analyzeImage}>
@@ -442,7 +444,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
 
             {error && <ErrorMessage message={error} />}
 
-            {prediction && (
+            {prediction && !showChat && (
               <PredictionCard
                 prediction={prediction}
                 getClassName={getClassName}

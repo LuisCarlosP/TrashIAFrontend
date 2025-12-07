@@ -22,6 +22,15 @@
   margin: 0 auto;
 }
 
+/* Chat active state - expanded layout */
+.classifier-page .results-section.chat-active {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  width: 100%;
+}
+
 /* Full height loading state */
 .classifier-page .results-section.loading-state {
   flex: 1;

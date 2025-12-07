@@ -96,6 +96,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -143,10 +144,21 @@
   font-weight: 600;
 }
 
-.message-content h1 { font-size: 1.4rem; }
-.message-content h2 { font-size: 1.2rem; }
-.message-content h3 { font-size: 1.1rem; }
-.message-content h4 { font-size: 1rem; }
+.message-content h1 {
+  font-size: 1.4rem;
+}
+
+.message-content h2 {
+  font-size: 1.2rem;
+}
+
+.message-content h3 {
+  font-size: 1.1rem;
+}
+
+.message-content h4 {
+  font-size: 1rem;
+}
 
 .message-content p {
   margin: 0.5rem 0;
@@ -222,11 +234,11 @@
   margin: 1rem 0;
 }
 
-.message-content > *:first-child {
+.message-content>*:first-child {
   margin-top: 0;
 }
 
-.message-content > *:last-child {
+.message-content>*:last-child {
   margin-bottom: 0;
 }
 
@@ -284,17 +296,197 @@
 }
 
 /* Chat responsive styles */
-@media (max-width: 768px) {
+
+/* Chat active state - full screen mode */
+.chat-section.chat-fullscreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-section.chat-fullscreen .chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: none;
+  height: 100%;
+  min-height: 400px;
+}
+
+.chat-section.chat-fullscreen .chat-messages {
+  flex: 1;
+  max-height: none;
+  min-height: 300px;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
   .chat-container {
-    max-height: 400px;
+    max-height: 450px;
   }
 
   .chat-messages {
-    max-height: 250px;
+    max-height: 300px;
+    padding: 1.25rem;
+  }
+
+  .chat-input-container {
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .chat-section {
+    margin-top: 1rem;
+  }
+
+  .btn-chat-toggle {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+
+  .chat-container {
+    max-height: 100%;
+    border-radius: 12px;
+  }
+
+  .chat-header {
+    padding: 0.875rem 1rem;
+  }
+
+  .chat-header h3 {
+    font-size: 1rem;
+    gap: 0.5rem;
+  }
+
+  .chat-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .chat-messages {
+    max-height: none;
+    min-height: 280px;
+    padding: 1rem;
+    gap: 0.75rem;
   }
 
   .message-content {
-    max-width: 90%;
+    max-width: 85%;
     font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+  }
+
+  .message-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .message-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .message-content h3 {
+    font-size: 1rem;
+  }
+
+  .message-content h4 {
+    font-size: 0.95rem;
+  }
+
+  .chat-input-container {
+    padding: 0.75rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .chat-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .btn-send-chat {
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  /* Fullscreen mode on mobile */
+  .chat-section.chat-fullscreen .chat-container {
+    min-height: 350px;
+  }
+
+  .chat-section.chat-fullscreen .chat-messages {
+    min-height: 250px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .chat-section {
+    margin-top: 0.75rem;
+  }
+
+  .btn-chat-toggle {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+  }
+
+  .chat-header {
+    padding: 0.75rem;
+  }
+
+  .chat-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .chat-messages {
+    min-height: 240px;
+    padding: 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .message-content {
+    max-width: 88%;
+    font-size: 0.85rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 12px;
+  }
+
+  .message-content ul,
+  .message-content ol {
+    padding-left: 1.2rem;
+  }
+
+  .chat-input-container {
+    padding: 0.65rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .chat-input {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-send-chat {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    min-width: 44px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chat-section.chat-fullscreen .chat-container {
+    min-height: auto;
+  }
+
+  .chat-section.chat-fullscreen .chat-messages {
+    min-height: 150px;
+    max-height: 200px;
   }
 }

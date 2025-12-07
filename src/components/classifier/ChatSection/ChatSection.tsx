@@ -51,7 +51,7 @@ export default function ChatSection({
   }
 
   return (
-    <div className="chat-section">
+    <div className={`chat-section ${showChat ? 'chat-fullscreen' : ''}`}>
       <div className="chat-container">
         <div className="chat-header">
           <h3>
@@ -62,7 +62,7 @@ export default function ChatSection({
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
-        
+
         <div className="chat-messages">
           {chatMessages.map((msg, index) => (
             <div key={index} className={`chat-message ${msg.role}`}>
@@ -85,7 +85,7 @@ export default function ChatSection({
           )}
           <div ref={chatEndRef} />
         </div>
-        
+
         <div className="chat-input-container">
           <input
             type="text"
@@ -96,8 +96,8 @@ export default function ChatSection({
             onKeyPress={onKeyPress}
             disabled={chatLoading}
           />
-          <button 
-            className="btn btn-send-chat" 
+          <button
+            className="btn btn-send-chat"
             onClick={onSendMessage}
             disabled={!chatInput.trim() || chatLoading}
           >
