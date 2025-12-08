@@ -48,6 +48,22 @@ export const translations = {
     contactSuccess: '¡Mensaje enviado!',
     contactError: 'Error al enviar',
 
+    // Footer
+    footerDonateText: '¿Te gustó el proyecto? Dona mediante PayPal',
+    footerDonateButton: 'Donar',
+    footerCopyright: 'Todos los derechos reservados',
+    footerAboutTitle: 'Sobre TrashIA',
+    footerAboutText: 'TrashIA utiliza inteligencia artificial para hacer el reciclaje más fácil y accesible. Nuestra misión es ayudar a clasificar residuos correctamente y promover un futuro más sostenible.',
+    footerGoalsTitle: 'Nuestros Objetivos',
+    footerGoal1: 'Facilitar la clasificación de residuos con IA',
+    footerGoal2: 'Promover prácticas de reciclaje responsables',
+    footerGoal3: 'Reducir la contaminación ambiental',
+    footerGoal4: 'Educar sobre sostenibilidad',
+    footerLinksTitle: 'Enlaces Rápidos',
+    footerContactTitle: 'Contacto',
+    footerEmail: 'Correo',
+    footerPhone: 'Teléfono',
+
     // Upload Section
     dragImageHere: 'Arrastra tu imagen aquí',
     orClickToSelect: 'o haz clic para seleccionar',
@@ -163,9 +179,6 @@ export const translations = {
     typeOil: 'Aceite',
     typeMedicine: 'Medicamentos',
 
-    // Footer
-    footerText: 'TrashIA - Ayudando a clasificar residuos con Inteligencia Artificial',
-    footerCopyright: 'Todos los derechos reservados.',
 
     // Stats Page
     navStats: 'Estadísticas',
@@ -223,6 +236,8 @@ export const translations = {
     notFoundDescription: 'Parece que esta página se fue al contenedor equivocado. No te preocupes, ¡te ayudamos a reciclar tu navegación!',
     notFoundButton: 'Volver al Inicio',
     notFoundTip: '¿Sabías que reciclar una botella de plástico ahorra suficiente energía para encender una bombilla durante 3 horas?',
+
+
 
     // Terms and Conditions
     termsLink: 'Términos y Condiciones',
@@ -297,6 +312,22 @@ export const translations = {
     contactSending: 'Sending...',
     contactSuccess: 'Message sent!',
     contactError: 'Error sending',
+
+    // Footer
+    footerDonateText: 'Did you like the project? Donate via PayPal',
+    footerDonateButton: 'Donate',
+    footerCopyright: 'All rights reserved',
+    footerAboutTitle: 'About TrashIA',
+    footerAboutText: 'TrashIA uses artificial intelligence to make recycling easier and more accessible. Our mission is to help classify waste correctly and promote a more sustainable future.',
+    footerGoalsTitle: 'Our Goals',
+    footerGoal1: 'Simplify waste classification with AI',
+    footerGoal2: 'Promote responsible recycling practices',
+    footerGoal3: 'Reduce environmental pollution',
+    footerGoal4: 'Educate about sustainability',
+    footerLinksTitle: 'Quick Links',
+    footerContactTitle: 'Contact',
+    footerEmail: 'Email',
+    footerPhone: 'Phone',
 
     // Upload Section
     dragImageHere: 'Drag your image here',
@@ -413,9 +444,6 @@ export const translations = {
     typeOil: 'Oil',
     typeMedicine: 'Medicine',
 
-    // Footer
-    footerText: 'TrashIA - Helping to classify waste with Artificial Intelligence',
-    footerCopyright: 'All rights reserved.',
 
     // Stats Page
     navStats: 'Stats',
@@ -473,6 +501,8 @@ export const translations = {
     notFoundDescription: 'It seems this page ended up in the wrong bin. Don\'t worry, let us help you recycle your navigation!',
     notFoundButton: 'Back to Home',
     notFoundTip: 'Did you know that recycling one plastic bottle saves enough energy to power a light bulb for 3 hours?',
+
+
 
     // Terms and Conditions
     termsLink: 'Terms & Conditions',

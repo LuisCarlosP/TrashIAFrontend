@@ -1,0 +1,58 @@
+/* About Section */
+.footer-about-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0 0 1rem 0;
+}
+
+.footer-subsection-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 1rem 0 0.5rem 0;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-goals-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-goals-list li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.footer-goals-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #81c784;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .footer-subsection-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-about-text {
+        text-align: left;
+        width: 100%;
+    }
+
+    .footer-goals-list {
+        width: 100%;
+    }
+
+    .footer-goals-list li {
+        text-align: left;
+    }
+}

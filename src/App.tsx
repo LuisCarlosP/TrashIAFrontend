@@ -44,23 +44,47 @@ function App() {
           }}
         />
 
-        <Suspense fallback={<Loading message="Cargando..." />}>
-          <Routes>
-            <Route path="/" element={<HomePage t={t} />} />
-            <Route path="/trashia" element={<ClassifierPage language={language} t={t} />} />
-            <Route path="/map" element={<RecyclingMap t={t} />} />
-            <Route path="/stats" element={<StatsPage language={language} t={t} />} />
-            <Route path="/scanner" element={<ScannerPage t={t} lang={language} />} />
-            <Route path="/terms" element={<TermsPage t={t} />} />
-            <Route path="*" element={<NotFoundPage t={t} />} />
-          </Routes>
-        </Suspense>
 
-        <Footer copyrightText={t.footerCopyright} termsLink={t.termsLink} />
+        <main className="main-content">
+          <Suspense fallback={<Loading message="Cargando..." />}>
+            <Routes>
+              <Route path="/" element={<HomePage t={t} />} />
+              <Route path="/trashia" element={<ClassifierPage language={language} t={t} />} />
+              <Route path="/map" element={<RecyclingMap t={t} />} />
+              <Route path="/stats" element={<StatsPage language={language} t={t} />} />
+              <Route path="/scanner" element={<ScannerPage t={t} lang={language} />} />
+              <Route path="/terms" element={<TermsPage t={t} />} />
+              <Route path="*" element={<NotFoundPage t={t} />} />
+            </Routes>
+          </Suspense>
+        </main>
+
+
+        <Footer
+          language={language}
+          copyrightText={t.footerCopyright}
+          termsLink={t.termsLink}
+          donateText={t.footerDonateText}
+          donateButtonText={t.footerDonateButton}
+          aboutTitle={t.footerAboutTitle}
+          aboutText={t.footerAboutText}
+          goalsTitle={t.footerGoalsTitle}
+          goal1={t.footerGoal1}
+          goal2={t.footerGoal2}
+          goal3={t.footerGoal3}
+          goal4={t.footerGoal4}
+          linksTitle={t.footerLinksTitle}
+          contactTitle={t.footerContactTitle}
+          emailLabel={t.footerEmail}
+          phoneLabel={t.footerPhone}
+          navHome={t.navHome}
+          navClassifier={t.navClassifier}
+          navMap={t.navMap}
+          navScanner={t.navScanner}
+        />
       </div>
     </Router>
   )
 }
 
 export default App
-

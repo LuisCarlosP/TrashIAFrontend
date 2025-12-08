@@ -1,29 +1,105 @@
-/* Footer */
+/* Main Footer Container */
 .footer {
-  background: #1b5e20;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
   color: white;
-  text-align: center;
-  padding: 1.5rem;
+  padding: 3rem 2rem 1rem;
   margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-.footer p {
+/* Footer Grid Layout */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* General Section Styling */
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* Copyright Bar */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom p {
   margin: 0;
-  opacity: 0.9;
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
 
 .footer-terms-link {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
   text-decoration: none;
-  transition: color 0.2s ease, text-decoration 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .footer-terms-link:hover {
   color: white;
   text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-section:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 2rem 1.5rem 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-section {
+    align-items: center;
+  }
+
+  .footer-section:last-child {
+    grid-column: auto;
+  }
+
+  .footer-section-title {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
 }
