@@ -196,24 +196,8 @@
   z-index: -1;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .header-container {
-    height: 60px;
-  }
-
-  .logo-icon {
-    font-size: 1.5rem;
-  }
-
-  .logo-icon-svg {
-    width: 32px;
-  }
-
-  .logo-text {
-    font-size: 1.4rem;
-  }
-
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
   .nav-desktop {
     display: none;
   }
@@ -230,6 +214,25 @@
 
   .menu-overlay {
     display: block;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .header-container {
+    height: 60px;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-icon-svg {
+    width: 32px;
+  }
+
+  .logo-text {
+    font-size: 1.4rem;
   }
 
   .language-toggle {
