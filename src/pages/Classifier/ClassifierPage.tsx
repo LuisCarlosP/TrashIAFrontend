@@ -493,7 +493,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
           />
         )}
 
-        {/* Loading state - full page centered like map */}
+        {/* Loading state - full page centered */}
         {selectedImage && loading && !prediction && (
           <div className="loading-container">
             <Loading message={t.analyzing} />

@@ -497,3 +497,47 @@
     min-height: 0;
   }
 }
+
+/* Mobile keyboard optimization - ChatGPT/Gemini style */
+@supports (height: 100dvh) {
+  @media (max-width: 768px) {
+    .chat-section.chat-fullscreen {
+      height: 100dvh;
+      max-height: 100dvh;
+    }
+
+    .chat-section.chat-fullscreen .chat-container {
+      height: 100%;
+      max-height: none;
+    }
+  }
+}
+
+/* iOS safe area and keyboard handling */
+@media (max-width: 768px) {
+  .chat-section.chat-fullscreen .chat-input-container {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    border-top: 1px solid #e0e0e0;
+    z-index: 10;
+  }
+
+  .chat-section.chat-fullscreen .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .chat-input:focus {
+    outline: none;
+  }
+
+  .chat-section.chat-fullscreen .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
