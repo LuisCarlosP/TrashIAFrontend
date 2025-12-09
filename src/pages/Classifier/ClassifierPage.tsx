@@ -419,25 +419,23 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   return (
     <div className="classifier-page">
       <main className="classifier-content">
-        {/* Mode Toggle Buttons - Hide in chat mode */}
-        {mode !== 'chat' && (
-          <div className="mode-toggle-container">
-            <button
-              className={`btn-mode ${mode === 'photo' ? 'active' : ''}`}
-              onClick={() => handleModeChange('photo')}
-            >
-              <FontAwesomeIcon icon={faCamera} />
-              {t.modePhoto}
-            </button>
-            <button
-              className={`btn-mode ${mode === 'chat' ? 'active' : ''}`}
-              onClick={() => handleModeChange('chat')}
-            >
-              <FontAwesomeIcon icon={faComments} />
-              {t.modeChat}
-            </button>
-          </div>
-        )}
+        {/* Mode Toggle Buttons */}
+        <div className="mode-toggle-container">
+          <button
+            className={`btn-mode ${mode === 'photo' ? 'active' : ''}`}
+            onClick={() => handleModeChange('photo')}
+          >
+            <FontAwesomeIcon icon={faCamera} />
+            {t.modePhoto}
+          </button>
+          <button
+            className={`btn-mode ${mode === 'chat' ? 'active' : ''}`}
+            onClick={() => handleModeChange('chat')}
+          >
+            <FontAwesomeIcon icon={faComments} />
+            {t.modeChat}
+          </button>
+        </div>
 
         {mode === 'photo' && !selectedImage && !showCamera && (
           <UploadSection
