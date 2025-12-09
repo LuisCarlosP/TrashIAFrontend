@@ -109,7 +109,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   useEffect(() => {
     if (chatMessages.length > 0 || chatLoading) {
       setTimeout(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 100);
     }
   }, [chatMessages, chatLoading]);
