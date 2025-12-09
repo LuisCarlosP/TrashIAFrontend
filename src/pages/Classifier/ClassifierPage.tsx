@@ -259,7 +259,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
       setChatLoading(true);
       try {
         const session = await createChatSession({
-          material_type: 'general',
+          material_type: '',
           is_recyclable: true,
           material_info: '',
           language: language
