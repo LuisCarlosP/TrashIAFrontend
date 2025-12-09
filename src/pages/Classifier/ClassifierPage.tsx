@@ -1,4 +1,4 @@
-import { useState, useRef, type DragEvent } from 'react';
+import { useState, useRef, useEffect, type DragEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecycle, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -105,6 +105,14 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatMessages.length > 0 || chatLoading) {
+      setTimeout(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [chatMessages, chatLoading]);
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -253,10 +261,6 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
         role: 'assistant',
         content: response.response
       }]);
-
-      setTimeout(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
     } catch (err) {
       setError(err instanceof Error ? err.message : t.chatError);
     } finally {
