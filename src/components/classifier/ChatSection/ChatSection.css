@@ -305,18 +305,16 @@
 }
 
 .chat-section.chat-fullscreen .chat-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  max-height: none;
-  height: 100%;
-  min-height: 400px;
+  height: 600px;
+  max-height: 600px;
 }
 
 .chat-section.chat-fullscreen .chat-messages {
   flex: 1;
-  max-height: none;
-  min-height: 300px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 /* Tablet styles */
@@ -417,11 +415,13 @@
 
   /* Fullscreen mode on mobile */
   .chat-section.chat-fullscreen .chat-container {
-    min-height: 350px;
+    height: 500px;
+    max-height: 500px;
   }
 
   .chat-section.chat-fullscreen .chat-messages {
-    min-height: 250px;
+    overflow-y: auto;
+    min-height: 0;
   }
 }
 
@@ -483,11 +483,12 @@
 /* Landscape mobile orientation */
 @media (max-height: 500px) and (orientation: landscape) {
   .chat-section.chat-fullscreen .chat-container {
-    min-height: auto;
+    height: 350px;
+    max-height: 350px;
   }
 
   .chat-section.chat-fullscreen .chat-messages {
-    min-height: 150px;
-    max-height: 200px;
+    overflow-y: auto;
+    min-height: 0;
   }
 }
