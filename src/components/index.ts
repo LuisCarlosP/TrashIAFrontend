@@ -1,8 +1,10 @@
 export { default as Header } from './common/Header/Header'
 export { default as UploadSection } from './classifier/UploadSection/UploadSection'
-export { default as CameraSection } from './classifier/CameraCapture/CameraSection'
+export { default as CameraSection } from './classifier/CameraSection/CameraSection'
 export { default as PredictionCard } from './classifier/PredictionCard/PredictionCard'
 export { default as ChatSection } from './classifier/ChatSection/ChatSection'
 export { default as Footer } from './common/Footer/Footer'
 export { Loading, ErrorMessage } from './common/LoadingError/LoadingError'
 export { MapHeader, MapControls, MapFilters, PointPopup } from './map'
+export { default as PageBackground } from './common/PageBackground/PageBackground'
+

@@ -1,8 +1,20 @@
+.stats-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0f4f3 0%, #e1ebe9 100%);
+}
+
 .stats-page {
   min-height: calc(100vh - 140px);
   padding: 2rem 2.5rem;
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* Header */

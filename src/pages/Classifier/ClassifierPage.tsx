@@ -15,7 +15,8 @@ import {
   PredictionCard,
   ChatSection,
   Loading,
-  ErrorMessage
+  ErrorMessage,
+  PageBackground
 } from '../../components';
 import type { Language } from '../../translations';
 import './ClassifierPage.css';
@@ -418,6 +419,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
 
   return (
     <div className="classifier-page">
+      <PageBackground opacity={0.25} />
       <main className="classifier-content">
         {/* Mode Toggle Buttons */}
         <div className="mode-toggle-container">

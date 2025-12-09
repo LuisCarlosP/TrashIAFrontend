@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   background: linear-gradient(135deg, #f0f4f3 0%, #e1ebe9 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 .classifier-content {
@@ -14,6 +16,8 @@
   width: 100%;
   margin: 0 auto;
   padding: 2rem 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* Results Section */
@@ -95,20 +99,7 @@
   font-weight: 500;
 }
 
-.classifier-page .btn {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
+
 
 .classifier-page .btn-analyze {
   background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);

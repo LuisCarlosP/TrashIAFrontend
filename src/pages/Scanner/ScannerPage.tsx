@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { BarcodeScanner, ProductResult } from '../../components/scanner'
 import { fetchProductByBarcode, type ProductInfo } from '../../services/barcode'
-import { Loading } from '../../components'
+import { Loading, PageBackground } from '../../components'
 import './ScannerPage.css'
 
 interface ScannerPageProps {
@@ -81,6 +81,7 @@ export default function ScannerPage({ t }: ScannerPageProps) {
 
     return (
         <div className="scanner-page">
+            <PageBackground opacity={0.25} />
             <div className="scanner-content">
                 <header className="scanner-header">
                     <h1>{t.scannerTitle}</h1>
