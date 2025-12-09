@@ -116,19 +116,19 @@
 }
 
 .classifier-page .btn-reset {
-  background: linear-gradient(135deg, #689f38 0%, #558b2f 100%);
+  background: #2e7d32;
   color: white;
   width: 100%;
   max-width: 400px;
   margin: 2rem auto 0;
   display: flex;
-  box-shadow: 0 4px 12px rgba(104, 159, 56, 0.3);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
 }
 
 .classifier-page .btn-reset:hover {
-  background: linear-gradient(135deg, #558b2f 0%, #33691e 100%);
+  background: #1b5e20;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(104, 159, 56, 0.4);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.4);
 }
 
 /* Responsive */

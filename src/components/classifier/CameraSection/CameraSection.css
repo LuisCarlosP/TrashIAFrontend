@@ -99,7 +99,7 @@
   }
 
   .camera-video {
-    max-height: 400px;
+    max-height: min(350px, 50vh);
   }
 
   .camera-controls {

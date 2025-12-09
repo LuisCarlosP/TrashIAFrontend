@@ -74,9 +74,14 @@ export default function ChatSection({
   }
 
   if (!showChat) {
+    const handleToggleWithScroll = () => {
+      onToggleChat()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
     return (
       <div className="chat-section">
-        <button className="btn btn-chat-toggle" onClick={onToggleChat}>
+        <button className="btn btn-chat-toggle" onClick={handleToggleWithScroll}>
           <FontAwesomeIcon icon={faComments} />
           {t.askQuestion}
         </button>

@@ -74,7 +74,7 @@ export const translations = {
     modeChat: 'Chat',
 
     // Camera Section
-    cameraActive: 'Cámara Activa - Posiciona el objeto',
+    cameraActive: 'Cámara Activa',
     cameraInfo: 'Asegúrate de que el objeto esté bien iluminado y enfocado',
     capturePhoto: 'Capturar Foto',
     cancel: 'Cancelar',
@@ -341,7 +341,7 @@ export const translations = {
     modeChat: 'Chat',
 
     // Camera Section
-    cameraActive: 'Camera Active - Position the object',
+    cameraActive: 'Camera Active',
     cameraInfo: 'Make sure the object is well-lit and in focus',
     capturePhoto: 'Capture Photo',
     cancel: 'Cancel',

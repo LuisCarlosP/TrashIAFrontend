@@ -41,7 +41,7 @@
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #4caf50 0%, #388e3c 50%, #2e7d32 100%);
+  background: #2e7d32;
   color: white;
   padding: 1.2rem 1.5rem;
   display: flex;

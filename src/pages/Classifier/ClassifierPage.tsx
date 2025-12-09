@@ -248,7 +248,13 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
 
   const handleModeChange = async (newMode: 'photo' | 'chat') => {
     setMode(newMode);
-    if (newMode === 'chat' && !chatSession) {
+
+    if (newMode === 'photo') {
+      // Reset chat state when switching to photo mode
+      setShowChat(false);
+      setChatSession(null);
+      setChatMessages([]);
+    } else if (newMode === 'chat' && !chatSession) {
       // Initialize a general chat session without photo
       setChatLoading(true);
       try {
@@ -421,23 +427,25 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
     <div className="classifier-page">
       <PageBackground opacity={0.25} />
       <main className="classifier-content">
-        {/* Mode Toggle Buttons */}
-        <div className="mode-toggle-container">
-          <button
-            className={`btn-mode ${mode === 'photo' ? 'active' : ''}`}
-            onClick={() => handleModeChange('photo')}
-          >
-            <FontAwesomeIcon icon={faCamera} />
-            {t.modePhoto}
-          </button>
-          <button
-            className={`btn-mode ${mode === 'chat' ? 'active' : ''}`}
-            onClick={() => handleModeChange('chat')}
-          >
-            <FontAwesomeIcon icon={faComments} />
-            {t.modeChat}
-          </button>
-        </div>
+        {/* Mode Toggle Buttons - hide when image selected or camera active */}
+        {!selectedImage && !showCamera && (
+          <div className="mode-toggle-container">
+            <button
+              className={`btn-mode ${mode === 'photo' ? 'active' : ''}`}
+              onClick={() => handleModeChange('photo')}
+            >
+              <FontAwesomeIcon icon={faCamera} />
+              {t.modePhoto}
+            </button>
+            <button
+              className={`btn-mode ${mode === 'chat' ? 'active' : ''}`}
+              onClick={() => handleModeChange('chat')}
+            >
+              <FontAwesomeIcon icon={faComments} />
+              {t.modeChat}
+            </button>
+          </div>
+        )}
 
         {mode === 'photo' && !selectedImage && !showCamera && (
           <UploadSection

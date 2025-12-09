@@ -28,16 +28,13 @@ export default function CameraSection({
           <FontAwesomeIcon icon={faVideo} />
           <span>{t.cameraActive}</span>
         </div>
-        <video 
+        <video
           ref={videoRef}
-          autoPlay 
+          autoPlay
           playsInline
           muted
           className="camera-video"
         />
-        <div className="camera-info">
-          <p>{t.cameraInfo}</p>
-        </div>
         <div className="camera-controls">
           <button className="btn btn-capture" onClick={onCapture}>
             <FontAwesomeIcon icon={faCamera} />
