@@ -70,6 +70,8 @@ export const translations = {
     fileRequirements: 'Solo JPEG o PNG • Máximo 5MB',
     selectImage: 'Seleccionar Imagen',
     takePhoto: 'Tomar Foto',
+    modePhoto: 'Foto',
+    modeChat: 'Chat',
 
     // Camera Section
     cameraActive: 'Cámara Activa - Posiciona el objeto',
@@ -335,6 +337,8 @@ export const translations = {
     fileRequirements: 'Only JPEG or PNG • Max 5MB',
     selectImage: 'Select Image',
     takePhoto: 'Take Photo',
+    modePhoto: 'Photo',
+    modeChat: 'Chat',
 
     // Camera Section
     cameraActive: 'Camera Active - Position the object',

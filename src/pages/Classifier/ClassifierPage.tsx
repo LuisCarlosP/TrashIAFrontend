@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type DragEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faRotateRight, faCamera, faComments } from '@fortawesome/free-solid-svg-icons';
 import {
   predictImage,
   type PredictionResponse,
@@ -83,6 +83,8 @@ interface ClassifierPageProps {
     chatPlaceholder: string;
     chatLoading: string;
     chatError: string;
+    modePhoto: string;
+    modeChat: string;
   };
 }
 
@@ -94,6 +96,7 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   const [error, setError] = useState<string | null>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [mode, setMode] = useState<'photo' | 'chat'>('photo');
 
   // Chat states
   const [chatSession, setChatSession] = useState<ChatSession | null>(null);
@@ -240,6 +243,33 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
       }
     }
     setShowChat(!showChat);
+  };
+
+  const handleModeChange = async (newMode: 'photo' | 'chat') => {
+    setMode(newMode);
+    if (newMode === 'chat' && !chatSession) {
+      // Initialize a general chat session without photo
+      setChatLoading(true);
+      try {
+        const session = await createChatSession({
+          material_type: 'general',
+          is_recyclable: true,
+          material_info: '',
+          language: language
+        });
+        setChatSession(session);
+        setChatMessages([{
+          role: 'assistant',
+          content: session.message
+        }]);
+        setShowChat(true);
+      } catch (err) {
+        console.error('Error creating chat session:', err);
+        setError(t.chatError);
+      } finally {
+        setChatLoading(false);
+      }
+    }
   };
 
   const handleSendMessage = async () => {
@@ -389,7 +419,27 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
   return (
     <div className="classifier-page">
       <main className="classifier-content">
-        {!selectedImage && !showCamera && (
+        {/* Mode Toggle Buttons - Hide in chat mode */}
+        {mode !== 'chat' && (
+          <div className="mode-toggle-container">
+            <button
+              className={`btn-mode ${mode === 'photo' ? 'active' : ''}`}
+              onClick={() => handleModeChange('photo')}
+            >
+              <FontAwesomeIcon icon={faCamera} />
+              {t.modePhoto}
+            </button>
+            <button
+              className={`btn-mode ${mode === 'chat' ? 'active' : ''}`}
+              onClick={() => handleModeChange('chat')}
+            >
+              <FontAwesomeIcon icon={faComments} />
+              {t.modeChat}
+            </button>
+          </div>
+        )}
+
+        {mode === 'photo' && !selectedImage && !showCamera && (
           <UploadSection
             isDragging={isDragging}
             onDragOver={handleDragOver}
@@ -405,6 +455,28 @@ export default function ClassifierPage({ language, t }: ClassifierPageProps) {
               takePhoto: t.takePhoto
             }}
           />
+        )}
+
+        {mode === 'chat' && !selectedImage && (
+          <div className="chat-only-section">
+            <ChatSection
+              showChat={true}
+              chatMessages={chatMessages}
+              chatInput={chatInput}
+              chatLoading={chatLoading}
+              chatEndRef={chatEndRef}
+              onToggleChat={() => setMode('photo')}
+              onInputChange={setChatInput}
+              onSendMessage={handleSendMessage}
+              onKeyPress={handleChatKeyPress}
+              translations={{
+                askQuestion: t.askQuestion,
+                chatTitle: t.chatTitle,
+                chatPlaceholder: t.chatPlaceholder,
+                chatLoading: t.chatLoading
+              }}
+            />
+          </div>
         )}
 
         {showCamera && (
