@@ -313,12 +313,16 @@
 /* Responsive */
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100svh; /* Small viewport height - no cambia con la barra de navegación */
+    min-height: auto;
+    max-height: 100svh;
     padding: 3rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    position: relative;
   }
 
   .hero-icon {
