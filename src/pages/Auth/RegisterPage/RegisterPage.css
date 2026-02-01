@@ -1,0 +1,41 @@
+/* RegisterPage Styles */
+.register-page {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-page .auth-container-wide {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  .register-page .auth-container-wide {
+    max-width: 100%;
+  }
+}
+
+@media (max-height: 800px) {
+  .register-page {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .register-page {
+    padding: 0.5rem;
+    height: auto;
+    min-height: calc(100vh - 60px);
+  }
+}

@@ -1,0 +1,139 @@
+/* RegisterForm Styles */
+.register-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(46, 125, 50, 0.2);
+  backdrop-filter: none;
+}
+
+.register-form-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.register-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 0.25rem;
+}
+
+.register-subtitle {
+  font-size: 0.85rem;
+  color: #616161;
+}
+
+.register-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.register-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #616161;
+}
+
+/* Success State */
+.register-success {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(46, 125, 50, 0.2);
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #616161;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.success-button {
+  padding: 0.75rem 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .register-form {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+
+  .register-form-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .register-title {
+    font-size: 1.1rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .register-form-fields {
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .register-button {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .register-footer {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,99 @@
+/* LoginForm Styles */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(46, 125, 50, 0.2);
+  backdrop-filter: none;
+}
+
+.login-form-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 0.25rem;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: #616161;
+}
+
+.login-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.forgot-password-link {
+  font-size: 0.85rem;
+  color: #2e7d32;
+  text-decoration: none;
+  text-align: right;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  color: #1b5e20;
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.875rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #616161;
+}
+
+.auth-link {
+  color: #2e7d32;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #1b5e20;
+  text-decoration: underline;
+}
+
+/* Error message */
+.auth-error-message {
+  padding: 0.875rem 1rem;
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 8px;
+  color: #c62828;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-form {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+}

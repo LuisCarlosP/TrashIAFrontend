@@ -4,6 +4,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/TrashIAFrontend/',
+  server: {
+    // Handle SPA routing - redirect all requests to index.html
+    historyApiFallback: true,
+  },
   build: {
     outDir: 'docs',
     rollupOptions: {

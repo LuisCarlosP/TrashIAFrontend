@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import type { Language } from '../../../translations'
 import trashiaIconWhite from '../../../assets/trashia-icon-white.svg'
+import { UserMenu } from '../../auth'
 
 interface HeaderProps {
   language: Language
@@ -97,6 +98,9 @@ export default function Header({ language, onToggleLanguage, t }: HeaderProps) {
             <FontAwesomeIcon icon={faLanguage} />
             <span>{language === 'es' ? 'EN' : 'ES'}</span>
           </button>
+
+          {/* User Menu */}
+          <UserMenu language={language} />
 
           {/* Mobile menu button */}
           <button

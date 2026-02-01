@@ -1,0 +1,44 @@
+/* AuthHeader Styles */
+.auth-header {
+  margin-bottom: 1rem;
+}
+
+.auth-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.auth-logo-icon {
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  border-radius: 10px;
+}
+
+.auth-logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b5e20;
+  letter-spacing: -0.5px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-logo-icon {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+
+  .auth-logo-text {
+    font-size: 1.2rem;
+  }
+}

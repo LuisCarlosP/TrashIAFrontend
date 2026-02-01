@@ -220,7 +220,12 @@
 /* Responsive - Mobile */
 @media (max-width: 768px) {
   .header-container {
-    height: 60px;
+    height: 56px;
+    padding: 0 0.75rem;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
   }
 
   .logo-icon {
@@ -228,16 +233,20 @@
   }
 
   .logo-icon-svg {
-    width: 32px;
+    width: 30px;
   }
 
   .logo-text {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
 
   .language-toggle {
-    padding: 0.5rem 0.75rem;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     font-size: 0.8rem;
+    justify-content: center;
+    border-radius: 50%;
   }
 
   .language-toggle span {
@@ -247,18 +256,89 @@
   .language-toggle svg {
     font-size: 1.1rem;
   }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1rem;
+  }
+
+  .nav-mobile.open {
+    padding: 0.75rem;
+  }
+
+  .nav-mobile-link {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .header-container {
+    height: 52px;
+    padding: 0 0.5rem;
+  }
+
+  .header-logo {
+    gap: 0.5rem;
+  }
+
   .logo-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .logo-icon {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .logo-icon-svg {
-    width: 28px;
+    width: 26px;
+  }
+
+  .header-actions {
+    gap: 0.375rem;
+  }
+
+  .language-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .language-toggle svg {
+    font-size: 1rem;
+  }
+
+  .menu-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .header-container {
+    padding: 0 0.375rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .logo-icon-svg {
+    width: 24px;
+  }
+
+  .header-actions {
+    gap: 0.25rem;
+  }
+
+  .language-toggle,
+  .menu-toggle {
+    width: 30px;
+    height: 30px;
   }
 }
