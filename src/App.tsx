@@ -19,6 +19,7 @@ const RegisterPage = lazy(() => import('./pages/Auth/RegisterPage/RegisterPage')
 const ForgotPasswordPage = lazy(() => import('./pages/Auth/ForgotPasswordPage/ForgotPasswordPage'))
 const ResetPasswordPage = lazy(() => import('./pages/Auth/ResetPasswordPage/ResetPasswordPage'))
 const AuthCallbackPage = lazy(() => import('./pages/Auth/AuthCallbackPage/AuthCallbackPage'))
+const ProfilePage = lazy(() => import('./pages/Auth/ProfilePage/ProfilePage'))
 
 // Component to conditionally render footer
 function ConditionalFooter({ language, t }: { language: 'es' | 'en', t: typeof translations['es'] | typeof translations['en'] }) {
@@ -103,6 +104,7 @@ function App() {
               <Route path="/auth/forgot-password" element={<ForgotPasswordPage language={language} />} />
               <Route path="/auth/reset-password" element={<ResetPasswordPage language={language} />} />
               <Route path="/auth/callback" element={<AuthCallbackPage language={language} />} />
+              <Route path="/profile" element={<ProfilePage language={language} />} />
               
               <Route path="*" element={<NotFoundPage t={t} />} />
             </Routes>

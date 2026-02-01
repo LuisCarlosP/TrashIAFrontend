@@ -205,6 +205,44 @@ export const authService = {
     });
     return handleResponse<MessageResponse>(response);
   },
+
+  /**
+   * Upload profile picture
+   */
+  async uploadProfilePicture(file: File): Promise<string> {
+    const tokens = getStoredTokens();
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const headers: HeadersInit = {};
+    if (tokens?.access_token) {
+      headers['Authorization'] = `Bearer ${tokens.access_token}`;
+    }
+    
+    const response = await fetch(`${API_URL}/auth/profile/picture`, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+    
+    const data = await handleResponse<{ url: string; message: string }>(response);
+    return data.url;
+  },
+
+  /**
+   * Change password with current password verification
+   */
+  async changePassword(currentPassword: string, newPassword: string): Promise<MessageResponse> {
+    const response = await fetch(`${API_URL}/auth/change-password`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({
+        current_password: currentPassword,
+        new_password: newPassword,
+      }),
+    });
+    return handleResponse<MessageResponse>(response);
+  },
 };
 
 export default authService;
