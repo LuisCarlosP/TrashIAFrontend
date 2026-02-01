@@ -313,7 +313,12 @@
 /* Responsive */
 @media (max-width: 768px) {
   .hero-section {
+    min-height: 100vh;
+    min-height: 100dvh;
     padding: 3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-icon {
