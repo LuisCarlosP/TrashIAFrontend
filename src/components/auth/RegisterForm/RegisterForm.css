@@ -41,18 +41,21 @@
 
 .register-button {
   width: 100%;
+  max-width: 100%;
   padding: 0.75rem;
   font-size: 0.95rem;
-  margin-bottom: 0.75rem;
+  margin: 0 auto 0.75rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .register-footer {
   text-align: center;
   font-size: 0.85rem;
   color: #616161;
+  width: 100%;
 }
 
 /* Success State */

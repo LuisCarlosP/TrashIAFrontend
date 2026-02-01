@@ -1,12 +1,15 @@
 /* RegisterPage Styles */
 .register-page {
-  height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px);
+  min-height: calc(100dvh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0));
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .register-page .auth-container-wide {
@@ -14,9 +17,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   position: relative;
   z-index: 1;
+  margin: auto;
 }
 
 /* Responsive */
@@ -29,13 +34,15 @@
 @media (max-height: 800px) {
   .register-page {
     padding: 0.5rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0));
   }
 }
 
 @media (max-width: 520px) {
   .register-page {
     padding: 0.5rem;
-    height: auto;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0));
     min-height: calc(100vh - 60px);
+    min-height: calc(100dvh - 60px);
   }
 }
